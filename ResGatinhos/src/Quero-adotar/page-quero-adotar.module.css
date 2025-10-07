@@ -1,0 +1,160 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&family=Bebas+Neue&display=swap');
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body, html {
+  height: 100%;
+  /* overflow: hidden; remove barras de rolagem */
+  background-color: #fff9f9;
+  color: #333;
+}
+
+/* Centraliza todo o conteúdo vertical e horizontal */
+.paginaAdotar {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Topo */
+.topo {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 1em;
+  color: #ff758f;
+  
+}
+
+/* Container central */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.infoGatoSelecionado {
+  background-color: #ffe5ec;
+  border-radius: 10px;
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+  color: #ff4d6d;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* Card do formulário */
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.formulario h2 {
+  font-family: "Averia Gruesa Libre", system-ui;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ff758f;
+}
+
+/* Labels e inputs */
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #444;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #ff758f;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255,117,143,0.3);
+}
+
+textarea {
+  resize: none; /* impede redimensionamento */
+}
+
+/* Contador do textarea */
+.contador {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Botões */
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #ff758f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #ff4d6d;
+  transform: translateY(-2px);
+}
+
+.botaoReset {
+  background-color: #a58797;
+  color: #333;
+}
+
+.botaoReset:hover {
+  background-color: #aaa;
+  transform: translateY(-2px);
+}
+
+/* Rodapé */
+.rodape {
+  text-align: center;
+  padding: 1rem;
+  background-color: #ffe5ec;
+  color: #333;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}

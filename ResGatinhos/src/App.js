@@ -1,17 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Adotar from "./Adotar/page-adotar";
-import Contato from "./Contato/page-contato";
-import QueroAdotar from "./Quero-adotar/page-quero-adotar";
+import logo from './logo.svg';
+import './App.css';
 
-export default function App() {
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/contato" element={<Contato />} />
-          <Route path="/adotar" element={<Adotar />} />
-          <Route path="/quero-adotar" element={<QueroAdotar />} />
-
-      </Routes>
-    </Router>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
+
+export default App;

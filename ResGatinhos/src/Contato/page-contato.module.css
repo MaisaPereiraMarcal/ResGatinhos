@@ -144,3 +144,28 @@ button:hover {
 .botaoWhats:hover {
   background-color: #1ebe5d;
 }
+
+.voltarBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff4d6d;
+  color: #fff;
+  border: none;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: 0.3s ease;
+}
+
+.voltarBtn:hover {
+  background-color: #e63950;
+  transform: scale(1.1);
+}

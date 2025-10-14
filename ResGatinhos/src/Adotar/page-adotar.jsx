@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import estilos from "./page-adotar.module.css";
 
+
 export default function Adotar() {
   const navigate = useNavigate();
 
@@ -48,14 +49,14 @@ export default function Adotar() {
       descricao: "Aventureiro e muito esperto! Ama explorar e subir em tudo.",
       imagem: "https://adoteumgatinho.org.br/media/uploads/cats/5b83facf0127ebdca4e644a9e38e3682.jpeg",
     },
-       {
+    {
       id: 7,
       nome: "Joaquina",
       idade: "3 anos",
       descricao: "Aventureira e muito esperta! Ama explorar e subir em tudo.",
       imagem: "https://adoteumgatinho.org.br/media/uploads/cats/498e902b88c1276eda59a7288b82abfa.jpg",
     },
-       {
+    {
       id: 8,
       nome: "Catarina",
       idade: "2 anos",
@@ -64,17 +65,15 @@ export default function Adotar() {
     },
   ];
 
-  // 🔧 Corrigido: apenas UMA função handleAdotar
-  const handleAdotar = (gato) => {
-    // Leva para a página de formulário e envia o nome do gato na URL
+  function handleAdotar(gato) {
     navigate(`/quero-adotar?gato=${encodeURIComponent(gato.nome)}`);
-  };
+  }
 
   return (
     <div className={estilos.paginaAdotar}>
       <header className={estilos.topo}>
         <h1>Adote um Gatinho</h1>
-        <p>Veja os gatinhos que estão esperando por um lar cheio de amor </p>
+        <p>Veja os gatinhos que estão esperando por um lar cheio de amor</p>
       </header>
 
       <main className={estilos.container}>
@@ -97,6 +96,13 @@ export default function Adotar() {
           ))}
         </div>
       </main>
+              <header>
+  <button onClick={() => navigate("/")} className={estilos.voltarBtn}>
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+      <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+    </svg>
+  </button>
+</header>
 
       <footer className={estilos.rodape}>
         © 2025 ResGatinhos — Amor que transforma vidas

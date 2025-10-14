@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./page-quero-adotar.module.css";
 
 export default function QueroAdotar() {
+  const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const gatoSelecionado = params.get("gato");
@@ -19,7 +20,6 @@ export default function QueroAdotar() {
     renda: "",
   });
 
-  // 🗺️ Dados de localização (mantidos com useMemo para performance)
   const dadosLocalizacao = useMemo(
     () => ({
       Brasil: {
@@ -41,11 +41,7 @@ export default function QueroAdotar() {
         Paraná: ["Curitiba", "Londrina", "Maringá"],
         Pernambuco: ["Recife", "Olinda", "Caruaru"],
         Piauí: ["Teresina", "Parnaíba", "Picos"],
-        "Rio de Janeiro": [
-          "Rio de Janeiro",
-          "Niterói",
-          "Campos dos Goytacazes",
-        ],
+        "Rio de Janeiro": ["Rio de Janeiro", "Niterói", "Campos dos Goytacazes"],
         "Rio Grande do Norte": ["Natal", "Mossoró", "Parnamirim"],
         "Rio Grande do Sul": ["Porto Alegre", "Caxias do Sul", "Pelotas"],
         Rondônia: ["Porto Velho", "Ji-Paraná", "Ariquemes"],
@@ -55,25 +51,23 @@ export default function QueroAdotar() {
         Sergipe: ["Aracaju", "Nossa Senhora do Socorro", "Lagarto"],
         Tocantins: ["Palmas", "Araguaína", "Gurupi"],
       },
-      Argentina: {
-        BuenosAires: ["Buenos Aires", "La Plata"],
-        Córdoba: ["Córdoba", "Villa Carlos Paz"],
-      },
     }),
     []
   );
 
-  // 🧠 Handlers de formulário
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  const handlePaisChange = (e) =>
+  const handlePaisChange = (e) => {
     setForm({ ...form, pais: e.target.value, estado: "", cidade: "" });
+  };
 
-  const handleEstadoChange = (e) =>
+  const handleEstadoChange = (e) => {
     setForm({ ...form, estado: e.target.value, cidade: "" });
+  };
 
-  const handleReset = () =>
+  const handleReset = () => {
     setForm({
       nome: "",
       email: "",
@@ -85,20 +79,28 @@ export default function QueroAdotar() {
       experiencia: "",
       renda: "",
     });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("🎉 Formulário enviado com sucesso!");
+    if (!form.nome || !form.email || !form.telefone) {
+      alert(" Preencha todos os campos obrigatórios!");
+      return;
+    }
+    alert(" Formulário enviado com sucesso!");
     handleReset();
   };
 
   return (
     <div className={styles.paginaAdotar}>
+      {}
       <header className={styles.topo}>
         <h1>Quero Adotar</h1>
-        <p>Dê uma nova chance a um gatinho! Preencha o formulário abaixo 🐾</p>
+        <p>Dê uma nova chance a um gatinho! Preencha o formulário abaixo </p>
+        
       </header>
 
+      {}
       <main className={styles.container}>
         <div className={styles.card}>
           <form className={styles.formulario} onSubmit={handleSubmit}>
@@ -112,47 +114,37 @@ export default function QueroAdotar() {
               </div>
             )}
 
-            <label htmlFor="nome">Nome completo</label>
+            <label>Nome completo</label>
             <input
-              type="text"
-              id="nome"
               name="nome"
-              placeholder="Seu nome"
               value={form.nome}
               onChange={handleChange}
+              placeholder="Seu nome"
               required
             />
 
-            <label htmlFor="email">E-mail</label>
+            <label>E-mail</label>
             <input
               type="email"
-              id="email"
               name="email"
-              placeholder="exemplo@email.com"
               value={form.email}
               onChange={handleChange}
+              placeholder="exemplo@email.com"
               required
             />
 
-            <label htmlFor="telefone">Telefone</label>
+            <label>Telefone</label>
             <input
               type="tel"
-              id="telefone"
               name="telefone"
-              placeholder="(xx) xxxxx-xxxx"
               value={form.telefone}
               onChange={handleChange}
+              placeholder="(xx) xxxxx-xxxx"
               required
             />
 
-            <label htmlFor="pais">País</label>
-            <select
-              id="pais"
-              name="pais"
-              value={form.pais}
-              onChange={handlePaisChange}
-              required
-            >
+            <label>País</label>
+            <select name="pais" value={form.pais} onChange={handlePaisChange} required>
               <option value="">Selecione um país</option>
               {Object.keys(dadosLocalizacao).map((pais) => (
                 <option key={pais} value={pais}>
@@ -163,9 +155,8 @@ export default function QueroAdotar() {
 
             {form.pais && (
               <>
-                <label htmlFor="estado">Estado</label>
+                <label>Estado</label>
                 <select
-                  id="estado"
                   name="estado"
                   value={form.estado}
                   onChange={handleEstadoChange}
@@ -183,9 +174,8 @@ export default function QueroAdotar() {
 
             {form.estado && (
               <>
-                <label htmlFor="cidade">Cidade</label>
+                <label>Cidade</label>
                 <select
-                  id="cidade"
                   name="cidade"
                   value={form.cidade}
                   onChange={handleChange}
@@ -201,24 +191,20 @@ export default function QueroAdotar() {
               </>
             )}
 
-            <label htmlFor="motivo">Por que deseja adotar?</label>
+            <label>Por que deseja adotar?</label>
             <textarea
-              id="motivo"
               name="motivo"
               rows="4"
-              placeholder="Conte um pouco..."
               value={form.motivo}
               onChange={handleChange}
               maxLength={200}
+              placeholder="Conte um pouco..."
               required
             />
-            <p className={styles.contador}>
-              {form.motivo.length} / 200 caracteres
-            </p>
+            <p className={styles.contador}>{form.motivo.length} / 200 caracteres</p>
 
-            <label htmlFor="experiencia">Você já teve animais antes?</label>
+            <label>Você já teve animais antes?</label>
             <select
-              id="experiencia"
               name="experiencia"
               value={form.experiencia}
               onChange={handleChange}
@@ -229,14 +215,13 @@ export default function QueroAdotar() {
               <option value="nao">Não</option>
             </select>
 
-            <label htmlFor="renda">Renda Mensal</label>
+            <label>Renda mensal</label>
             <input
               type="number"
-              id="renda"
               name="renda"
-              placeholder="R$ 4100"
               value={form.renda}
               onChange={handleChange}
+              placeholder="R$ 4100"
             />
 
             <div className={styles.botoes}>
@@ -252,9 +237,13 @@ export default function QueroAdotar() {
           </form>
         </div>
       </main>
-
+          <header>
+              <button onClick={() => navigate("/")} className={styles.voltarBtn}>
+                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+              </button>
+        </header>
       <footer className={styles.rodape}>
-        © 2025 ResGatinhos — Amor que transforma vidas
+        © 2025 ResGatinhos — Amor que transforma vidas 
       </footer>
     </div>
   );

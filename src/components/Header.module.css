@@ -1,61 +1,125 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-  font-family: 'Inter', sans-serif;
-  background-color: #e3a8e5; /* fundo rosa */
+/* Header.module.css */
+
+/* ---------------------------------------------------- */
+/* 0. CSS Global - Você precisa disso no seu App.css: */
+/* ---------------------------------------------------- */
+/* body, html { margin: 0; padding: 0; box-sizing: border-box; width: 100%; overflow-x: hidden; } */
+
+/* 1. Navbar e Botões */
+.headerContainer {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
-.logo img {
-  height: 50px;
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Mantendo o padding lateral para o conteúdo, mas o fundo é 100% */
+    padding: 5px 25px; 
+    width: 100%; 
+    /* Esta cor é o fundo da Navbar */
+    background-color: rgba(203, 138, 196, 1); 
+    position: relative;
+    z-index: 10;
 }
 
-.nav-links {
-  display: flex;
-  gap: 24px;
+.logoImg{
+    height: 150px;
+    width: auto;
+    cursor: pointer;
+    /* Correção da margem negativa */
+    margin-left: 0; 
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  font-size: 16px;
+.navAndButtons {
+    display: flex;
+    align-items: center;
+    gap: 32px; 
+}
+
+.navLinks {
+    display: flex;
+    gap: 24px;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 5px 0;
 }
 
 .buttons {
-  display: flex;
-  gap: 12px;
+    display: flex;
+    gap: 12px;
 }
 
 .btn {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .entrar {
-  background-color: orange;
-  color: black;
+    background-color: #FFC93C; 
+    color: #000;
 }
 
 .cadastrar {
-  background-color: yellow;
-  color: black;
+    background-color: #875990;
+    color: #fff;
 }
 
-.banner {
-  position: relative;
-  width: 100%;
-  max-height: 400px;
-  overflow: hidden;
-  margin-top: 20px;
+
+/* 2. Seção Hero (Banner Voluntários) */
+.heroSection {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    /* CORREÇÃO: REMOVENDO A COR DE FUNDO (O "CONTAINER") */
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinhando ao topo para a imagem encostar na navbar */
+    padding: 0; 
+    margin: 0;
+    overflow: hidden;
 }
 
-.banner img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+.heroImg {
+    /* Garante que a imagem preencha a largura total sem barras laterais */
+    width: 100%; 
+    height: auto; /* Deixa a altura ser determinada pela proporção da imagem */
+    /* Usando 'cover' para garantir que preencha, se houver espaço. 
+       Se a imagem estiver cortando, mude para 'contain' ou 'unset'. */
+    object-fit: cover; 
+    z-index: 1; 
+}
+
+/* 3. Seção "Por que ser voluntário?" */
+.whyVolunteerSection {
+    padding: 40px 0; 
+    background-color: #875990;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+.whyVolunteerTitle {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.whyVolunteerText {
+    max-width: 800px;
+    margin: 0 auto; 
+    font-size: 18px;
+    line-height: 1.6;
 }

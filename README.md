@@ -56,7 +56,19 @@ Cada página inclui elementos gráficos como patinhas, ícones e fotos dos gatin
 - Flexbox e Grid – layout responsivo
 
 ---
+## Créditos
 
+**Desenvolvido por:** Miguel Ferreira  
+**Projeto acadêmico — Curso Técnico em Informática**  
+**Rodeio - SC**  
+**2025**
+
+---
+
+> “Nós merecemos um lar cheio de amor.”  
+> — Equipe ResGatinhos Blumenau
+
+---
 ##  Como Rodar o Projeto
 
 ```bash

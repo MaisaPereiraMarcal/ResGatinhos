@@ -83,7 +83,7 @@ O React usa o Node.js para gerenciar pacotes e rodar o servidor local.
 - Baixe a versão **LTS (recomendada)** para seu sistema operacional (Windows, macOS ou Linux).  
 - Siga as etapas de instalação padrão clicando em **Next → Next → Install**.  
 - Após a instalação, confirme se deu certo abrindo o **Prompt de Comando** (ou **Terminal**) e digitando:
-  ```bash
+  ---
   node -v
   npm -v
 ---

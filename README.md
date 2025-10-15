@@ -58,8 +58,9 @@ Cada página inclui elementos gráficos como patinhas, ícones e fotos dos gatin
 ---
 ## Créditos
 
-**Desenvolvido por:** Camila Medeiros, Maisa Pereira, Miguel Ferreira, Samuel Soares
-**Projeto acadêmico — Curso Técnico em Informática**  
+**Desenvolvido por:** Camila Medeiros, Maisa Pereira, Miguel Ferreira, Samuel Soares\
+**Projeto acadêmico — Curso Técnico em Informática**\
+**Escola de Educação Básica "Osvaldo Cruz"**\
 **Rodeio - SC**  
 **2025**
 

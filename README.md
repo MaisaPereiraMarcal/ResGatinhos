@@ -72,13 +72,13 @@ npm install
 # Rodar o servidor local
 npm start
 
-## 🧰 Requisitos e Instalação
+## !! Requisitos e Instalação !!
 Antes de rodar o projeto, é necessário instalar o **Node.js** e configurar o ambiente React.
 ---
 ### 1. Instalar o Node.js
 O React usa o Node.js para gerenciar pacotes e rodar o servidor local.
 - Acesse o site oficial:  
-  👉 [https://nodejs.org/](https://nodejs.org/)
+  -> [https://nodejs.org/](https://nodejs.org/)
 
 - Baixe a versão **LTS (recomendada)** para seu sistema operacional (Windows, macOS ou Linux).  
 - Siga as etapas de instalação padrão clicando em **Next → Next → Install**.  

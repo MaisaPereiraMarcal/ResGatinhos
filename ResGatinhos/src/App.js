@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// 🔹 Importação dinâmica (lazy loading) para melhorar performance
 const Home = lazy(() => import("./Home/page-home"));
 const QueroAdotar = lazy(() => import("./Quero-adotar/page-quero-adotar"));
 const Adotar = lazy(() => import("./Adotar/page-adotar"));
@@ -10,7 +9,7 @@ const Contato = lazy(() => import("./Contato/page-contato"));
 function App() {
   return (
     <Router>
-      {/* Suspense mostra um loading enquanto a página carrega */}
+      
       <Suspense fallback={<div className="loading">Carregando...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // 👈 Importe o useState
+import React, { useState } from 'react'; 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -11,10 +11,8 @@ import Cadastro from './pages/Cadastro';
 import Conta from './pages/Conta';
 
 function App() {
-    // 1. Crie o estado de login
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // 2. Crie as funções para mudar o estado (serão passadas para Login e Header)
     const handleLogin = () => {
         setIsLoggedIn(true);
     };
@@ -25,7 +23,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            {/* 3. Passe o estado e as funções como props para o Header */}
+
             <Header 
                 isLoggedIn={isLoggedIn} 
                 onLogout={handleLogout} 
@@ -37,8 +35,6 @@ function App() {
                 <Route path="/como-ajudar" element={<ComoAjudar />} />
                 <Route path="/adote" element={<Adote />} />
                 <Route path="/contato" element={<Contato />} />
-                
-                {/* 4. Sugestão: Passe handleLogin/Logout para a tela de Login/Cadastro */}
                 <Route path="/entrar" element={<Login onLogin={handleLogin} />} />
                 <Route path="/cadastrar" element={<Cadastro />} />
                 <Route path="/conta" element={<Conta />} />

@@ -14,7 +14,7 @@
 
 .whyVolunteerSection {
     margin-top: 30px;
-    padding: 40px 0;
+    padding: 40px 15px;
     background-color: rgba(203, 138, 196, 1);
     color: black;
     text-align: center;
@@ -34,7 +34,7 @@
 }
 
 .servicesContainer {
-    padding: 80px 40px;
+    padding: 80px 20px;
     text-align: center;
     background-color: white;
 }
@@ -49,14 +49,14 @@
 
 .flipCard {
     background-color: transparent;
-    width: 200px;
-    height: 250px;
+    width: 250px;
+    height: 300px;
     perspective: 1000px;
     font-family: 'Inter', sans-serif;
 }
 
 .cardTitle {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 700;
     margin: 0;
     padding: 0 10px;
@@ -107,7 +107,7 @@
 }
 
 .cardIcon {
-    font-size: 40px;
+    font-size: 45px;
     margin-bottom: 15px;
     color: #4a00e0;
 }
@@ -121,25 +121,27 @@
     margin-top: 15px;
     font-weight: 400;
 }
+
 .formSection {
-    padding: 30px 40px;
+    padding: 30px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.formSection > p {
+.formSection>p {
     font-size: 20px;
     font-weight: 500;
     color: rgb(134, 29, 132);
     margin-bottom: 40px;
+    max-width: 90%;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 15px;
     width: 100%;
     max-width: 600px;
     padding: 30px;
@@ -147,6 +149,7 @@
     background-color: white;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid #cbb9d0;
+    box-sizing: border-box;
 }
 
 .formTitle {
@@ -179,23 +182,17 @@
     color: #6d0188;
     font-size: 16px;
     width: 100%;
-    
-    /* Mantido: Alinhado com o rótulo flutuante */
-    padding: 18px 10px 10px 10px; 
-    
+    padding: 18px 10px 10px 10px;
     outline: 0;
     border: 1px solid #cbb9d0;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
-/* Textarea específico */
 .form label .textarea {
     min-height: 100px;
-    resize: none; 
-    
-    /* CORREÇÃO APLICADA: Padding agora é simétrico (15px esquerda e direita) */
-    padding: 18px 10px 10px 10px; 
-    
+    resize: none;
+    padding: 18px 10px 10px 10px;
     outline: 0;
     border: 1px solid #cbb9d0;
     border-radius: 10px;
@@ -203,40 +200,36 @@
     background-color: #FFFFFF;
     color: #6d0188;
     font-size: 16px;
-
+    box-sizing: border-box;
 }
 
-/* Estilo do Span (Placeholder flutuante - Início da Transição) */
-.form label .input + span,
-.form label .textarea + span { 
+.form label .input+span,
+.form label .textarea+span {
     color: #6d0188;
     position: absolute;
-    /* Mantido: left: 15px para alinhar o rótulo com o texto digitado */
-    left: 15px; 
+    left: 15px;
     top: 10px;
     font-size: 0.7em;
     cursor: text;
+    font-family: Arial, sans-serif;
     transition: 0.3s ease;
     pointer-events: none;
 }
 
-/* Placeholder Flutuante (Estado Inicial - Texto Grande) */
-.form label .input:placeholder-shown + span,
-.form label .textarea:placeholder-shown + span {
-    /* Mantido: top: 10px e left: 15px */
+.form label .input:placeholder-shown+span,
+.form label .textarea:placeholder-shown+span {
     top: 10px;
     font-size: 1em;
     color: #8b5c9e;
     left: 15px;
 }
 
-/* Placeholder Flutuante (Focado ou Preenchido - Texto Pequeno, Flutuando no Topo) */
-.form label .input:focus + span,
-.form label .input:valid + span,
-.form label .textarea:focus + span,
-.form label .textarea:valid + span {
-    color: #a109c7; 
-    /* Mantido: top: 2px e left: 15px */
+.form label .input:focus+span,
+.form label .input:valid+span,
+.form label .textarea:focus+span,
+.form label .textarea:valid+span {
+    color: #a109c7;
+    font-family: Arial, sans-serif;
     top: 2px;
     font-size: 0.75em;
     font-weight: 600;
@@ -249,13 +242,13 @@
     font-size: 18px;
     font-weight: 700;
     width: 100%;
-    padding: 16px; 
+    padding: 16px;
     border-radius: 12px;
     border: none;
     outline: none;
     cursor: pointer;
-    margin-top: 15px; 
-    box-shadow: 
+    margin-top: 15px;
+    box-shadow:
         5px 5px 15px rgba(0, 0, 0, 0.1),
         -5px -5px 15px rgba(255, 255, 255, 0.7);
     transition: all 0.2s ease;
@@ -263,14 +256,14 @@
 
 .submit:hover {
     background-color: #FFA500;
-    box-shadow: 
+    box-shadow:
         8px 8px 18px rgba(0, 0, 0, 0.15),
         -8px -8px 18px rgba(255, 255, 255, 0.8);
 }
 
 .submit:active {
-    transform: scale(0.98); 
-    box-shadow: 
+    transform: scale(0.98);
+    box-shadow:
         inset 3px 3px 7px rgba(0, 0, 0, 0.1),
         inset -3px -3px 7px rgba(255, 255, 255, 0.7);
     background-color: #d18a20;
@@ -282,117 +275,175 @@
     margin-top: 20px;
     font-style: italic;
 }
+
 .footer {
-  background-color: #d29fd6; /* lilás suave igual ao Figma */
-  color: #000000;
-  padding: 30px 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #d29fd6;
+    color: #000000;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footerContent {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
-/* Coluna de contato */
-.footerContact {
-  flex: 1;
-  min-width: 220px;
+.footerContact,
+.footerPartners,
+.footerCat {
+    flex: 1;
+    min-width: 250px;
 }
 
-.footerContact h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.footerContact h3,
+.footerPartners h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
-.footerContact p {
-  margin: 4px 0;
+.footerContact p,
+.footerPartners p {
+    margin: 4px 0;
 }
 
 .socialIcons {
-  margin-top: 8px;
-  display: flex;
-  gap: 10px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* Coluna de parcerias */
-.footerPartners {
-  flex: 1;
-  min-width: 200px;
+.socialIcons img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
 }
 
-.footerPartners h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.socialIcons img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
-.footerPartners p {
-  margin: 4px 0;
-}
-
-/* Coluna do gato e mensagem */
 .footerCat {
-  flex: 1;
-  min-width: 220px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+    align-items: flex-end;
 }
 
 .catMessage {
-  background-color: #9950a4;
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 20px;
-  font-size: 15px;
-  max-width: 180px;
-  text-align: center;
-  position: relative;
-  margin-bottom: 12px;
+    background-color: #9950a4;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-size: 15px;
+    max-width: 180px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 12px;
 }
 
-/* Triângulo do balão de fala */
 .catMessage::after {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  right: 25px;
-  border-width: 12px 10px 0;
-  border-style: solid;
-  border-color: #9950a4 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    right: 25px;
+    border-width: 12px 10px 0;
+    border-style: solid;
+    border-color: #9950a4 transparent transparent transparent;
 }
 
 .catImage {
-  width: 100px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-.socialIcons {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* espaçamento entre os ícones */
-  margin-top: 10px;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
-/* Ícones (Facebook e Instagram) */
-.socialIcons img {
-  width: 28px;   /* tamanho menor */
-  height: 28px;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  cursor: pointer;
+@media (max-width: 991px) {
+    .cardsGrid {
+        gap: 20px;
+    }
+
+    .flipCard {
+        width: 45%;
+        max-width: 300px;
+        height: 280px;
+    }
+
+    .footerContent {
+        justify-content: space-around;
+        padding: 0 10px;
+    }
+
+    .footerContact,
+    .footerPartners {
+        min-width: 45%;
+        margin-bottom: 20px;
+    }
 }
 
-/* Efeito ao passar o mouse */
-.socialIcons img:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
+@media (max-width: 767px) {
+    .whyVolunteerTitle {
+        font-size: 26px;
+    }
+
+    .whyVolunteerText {
+        font-size: 16px;
+    }
+
+    .servicesContainer {
+        padding: 40px 10px;
+    }
+
+    .formSection {
+        padding: 20px 10px;
+    }
+
+    .flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .flipCard {
+        width: 90%;
+        height: 250px;
+    }
+
+    .footerContent {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .footerContact,
+    .footerPartners,
+    .footerCat {
+        width: 100%;
+        min-width: unset;
+        text-align: center;
+        align-items: center;
+    }
+
+    .socialIcons {
+        justify-content: center;
+    }
+
+    .footerCat {
+        align-items: center;
+    }
+
+    .catMessage {
+        margin-right: 0;
+    }
+
+    .catMessage::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
 }

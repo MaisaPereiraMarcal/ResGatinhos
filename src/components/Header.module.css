@@ -114,3 +114,82 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     transform: scale(1.03);
 }
+
+@media (max-width: 992px) {
+    .headerContent {
+        padding: 10px 20px;
+    }
+
+    .logoImg {
+        height: 120px;
+    }
+
+    .logoSection {
+        margin-bottom: -30px;
+    }
+
+    .navAndButtons {
+        gap: 40px;
+    }
+
+    .navLinks {
+        gap: 25px;
+    }
+
+    .navLinks a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .headerContent {
+        flex-direction: column;
+        padding: 10px 20px 20px;
+        align-items: flex-start;
+    }
+
+    .logoImg {
+        height: 100px;
+    }
+
+    .logoSection {
+        margin-bottom: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navAndButtons {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .navLinks {
+        width: 100%;
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    .navLinks a {
+        padding: 8px 0;
+        font-size: 16px;
+        align-self: stretch;
+        text-align: center;
+    }
+
+    .buttons {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 10px 15px;
+        font-size: 14px;
+        max-width: 150px;
+    }
+}

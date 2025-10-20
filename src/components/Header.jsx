@@ -31,10 +31,10 @@ function Header({ isLoggedIn, onLogout }) {
                                         PERFIL
                                     </button>
                                 </Link>
-                                {/* Botão Sair */}
+                               
                                 <button 
                                     className={`${headerStyles.btn} ${headerStyles.cadastrar}`}
-                                    onClick={onLogout} // Chama a função que muda o estado no App.js
+                                    onClick={onLogout} 
                                 >
                                     SAIR
                                 </button>

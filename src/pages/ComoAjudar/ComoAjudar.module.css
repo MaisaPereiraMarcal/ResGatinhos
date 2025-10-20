@@ -1,0 +1,215 @@
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Impede barra de rolagem horizontal se algo ultrapassar 100% da largura */
+    overflow-x: hidden; 
+    box-sizing: border-box; /* Garante que padding e border não adicionem largura total */
+}
+
+/* Garante que todos os elementos filhos se comportem corretamente com box-sizing */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+/* Estilos Gerais e Reset (Ajustado para seu app já ter um reset global) */
+.container {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f7f7;
+    min-height: 100vh;
+}
+
+/* Container de Conteúdo (Limita a largura para o texto e seções) */
+.contentWrapper {
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 40px 20px; 
+}
+
+/* Título Principal */
+.mainTitle {
+    text-align: center;
+    color: rgb(90, 1, 89); /* Roxo */
+    font-size: 2.5rem;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+/* Estilos do Banner (Full Width - Apenas visual) */
+.bannerSection {
+    width: 100%; 
+    overflow: hidden; 
+}
+
+.bannerImage {
+    width: 100%; 
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* === Estilos da Seção de Doação de Itens === */
+.donationSection {
+    margin-bottom: 70px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sectionTitle {
+    color:rgba(129, 0, 127, 1); /* Laranja em destaque */
+    font-size: 2rem;
+    font-weight: 700;
+    border-bottom: 4px solid #f7f7f7;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.sectionContent {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.itemImageContainer {
+    flex: 0 0 350px; 
+    max-width: 40%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: float 3s ease-in-out infinite;
+    
+}
+
+.itemImage {
+    width: 105%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.itemList {
+    flex: 1;
+}
+
+.sectionDescription {
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* --- GRID CRIATIVO DE ITENS --- */
+.creativeGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; /* Espaçamento reduzido */
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.creativeItem {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #fce8fd 0%, #fff 100%); /* Gradiente suave */
+    border: 1px solid #e1e1e1;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.creativeItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 159, 67, 0.15); /* Sombra sutil laranja */
+}
+
+.itemIconImage {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+    margin-right: 15px;
+    object-fit: contain; 
+}
+
+.itemText {
+    text-align: left;
+}
+
+.listTitle {
+    color: rgba(129, 0, 127, 1);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.itemDesc {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* --- Botão --- */
+.contactButton {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    margin-top: 15px;
+    letter-spacing: 0.05em;
+    min-width: 200px;
+    text-align: center;
+}
+
+.primaryBtn {
+    background-color:rgba(129, 0, 127, 1);
+    color: white;
+    border: 2px solid rgb(180, 2, 177);
+}
+
+.primaryBtn:hover {
+    background-color: rgb(197, 1, 194);
+    box-shadow: 0 4px 10px rgba(87, 75, 144, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Animação para a imagem */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 900px) {
+    .sectionContent {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .itemImageContainer {
+        max-width: 100%;
+        flex: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .creativeGrid {
+        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        text-align: left;
+    }
+
+    .creativeItem {
+        justify-content: flex-start;
+    }
+
+    .contactButton {
+        width: 100%;
+        max-width: none;
+    }
+}

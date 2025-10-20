@@ -2,7 +2,6 @@ import React from 'react';
 import headerStyles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
-// 1. O componente AGORA aceita as props isLoggedIn e onLogout
 function Header({ isLoggedIn, onLogout }) {
     return (
         <header className={headerStyles.headerContainer}>
@@ -22,11 +21,11 @@ function Header({ isLoggedIn, onLogout }) {
                     </nav>
                     
                     <div className={headerStyles.buttons}>
-                        {/* 2. Renderização Condicional: Troca os botões com base no estado de login */}
+                        
                         {isLoggedIn ? (
-                            // ** OPÇÃO 1: USUÁRIO LOGADO **
+     
                             <>
-                                {/* Botão Perfil/Conta */}
+                         
                                 <Link to="/conta" className={headerStyles.btnLink}>
                                     <button className={`${headerStyles.btn} ${headerStyles.entrar}`}>
                                         PERFIL
@@ -41,7 +40,7 @@ function Header({ isLoggedIn, onLogout }) {
                                 </button>
                             </>
                         ) : (
-                            // ** OPÇÃO 2: USUÁRIO DESLOGADO (Seu código original) **
+                
                             <>
                                 <Link to="/entrar" className={headerStyles.btnLink}>
                                     <button className={`${headerStyles.btn} ${headerStyles.entrar}`}>

@@ -34,6 +34,8 @@ export default function PageHome({ user, setUser, image }) {
     return () => observer.disconnect();
   }, []);
 
+
+  
   // Fecha dropdown se clicar fora
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -45,35 +47,22 @@ export default function PageHome({ user, setUser, image }) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  // Slick Slider
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: true,
-  };
+  
 
   const imagens = ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"];
 
-  // Mouse hover efeito 3D nos cards/banner
-  const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width - 0.5) * 30;
-    const y = ((e.clientY - top) / height - 0.5) * -30;
-    setRotate({ x, y });
-    const glowX = ((e.clientX - left) / width) * 100;
-    const glowY = ((e.clientY - top) / height) * 100;
-    setGlow({ x: glowX, y: glowY });
-  };
-
-  const handleMouseLeave = () => {
-    setRotate({ x: 0, y: 0 });
-    setGlow({ x: 50, y: 50 });
-  };
+  // ===== CONFIGURAÇÃO DO CARROSSEL ===== 
+  const settings = { dots: true,
+     infinite: true, 
+     autoplay: true,
+      speed: 700,
+       autoplaySpeed: 3500, 
+      slidesToShow: 1,
+       slidesToScroll: 1,
+       arrows: false,
+       pauseOnHover: true,
+       adaptiveHeight: true,
+     };
 
   // Animações de scroll para outros elementos
   useEffect(() => {
@@ -151,16 +140,19 @@ export default function PageHome({ user, setUser, image }) {
 
       {/* ===== MAIN ===== */}
       <main className={styles.mainContent}>
-        {/* ===== BANNER ===== */}
-        <div className={styles.bannerContainer}>
-          <Slider {...settings}>
-            {imagens.map((img, index) => (
-              <div key={index}>
-                <img src={img} alt={`Banner ${index + 1}`} className="banner-img" />
-              </div>
-            ))}
-          </Slider>
-        </div>
+        {/* ===== CARROSSEL ===== */} 
+        <section className={styles.bannerSection}> 
+          <Slider {...settings}> 
+            <div className={styles.bannerItem}> 
+              <img src="/banner1.jpg" alt="Banner 1 - Adoção de Gatos" title="Adote um novo amigo" />
+               </div>
+                <div className={styles.bannerItem}>
+                   <img src="/banner2.jpg" alt="Banner 2 - Resgate de Gatos" title="Apoie o Resgate" />
+                    </div> 
+                    <div className={styles.bannerItem}> 
+                      <img src="/banner3.jpg" alt="Banner 3 - Voluntariado" title="Seja um voluntário" /> </div>
+                       </Slider> 
+                       </section>
 
         {/* ===== HERO ===== */}
         <section className={styles.hero}>
@@ -174,14 +166,14 @@ export default function PageHome({ user, setUser, image }) {
           </div>
         </section>
 
-        {/* ===== CONTADOR ===== */}
+        {/* ===== CONTADOR =====
         <motion.div
           className={styles.cardWrapper}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           animate={{ rotateX: rotate.y, rotateY: rotate.x }}
           transition={{ type: "spring", stiffness: 120, damping: 20 }}
-        ></motion.div>
+        ></motion.div> */}
 
         {/* ===== VÍDEO ===== */}
         <section ref={sectionRef} className={styles.videoSecao}>
@@ -211,8 +203,7 @@ export default function PageHome({ user, setUser, image }) {
             loading="lazy"
           ></iframe>
         </section>
-
-        {/* ===== GATINHOS ===== */}
+{/* ===== QUEM SOMOS ===== */} <section className={styles.quemSomos}> <div className={styles.textoQuemSomos}> <h2>Quem Somos — Projeto ResGatinhos</h2> <p> Somos um grupo apaixonado por felinos, dedicado ao resgate, cuidado e adoção responsável de gatinhos em situação de abandono. Nosso objetivo é transformar histórias de dor em finais felizes, unindo cada bichano a um novo lar cheio de amor. 💜 </p> </div> <div className={styles.cardGatoAnimado}> <img src="/gato-animado.gif" alt="Gatinho brincando" title="Gatinho resgatado feliz" /> </div> </section> {/* ===== GATINHOS ===== */}
         <div className={styles.gridGatos}>
           {gatinhos.map((gato, i) => (
             <div key={i} className={styles.cardGato}>

@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import styles from './SejaVoluntario.module.css';
 
 function SejaVoluntario() {
-    // 1. **COLOQUE SEU LINK REAL DO FORMSPREE AQUI**
-    const FORMSPREE_URL = 'https://formspree.io/f/xjkazrwd'; 
+    const FORMSPREE_URL = 'https://formspree.io/f/xjkazrwd';
 
     const [enviado, setEnviado] = useState(false);
     const [enviando, setEnviando] = useState(false);
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // <-- ESSENCIAL: Impede o redirecionamento padrão do HTML!
+        e.preventDefault();
         setEnviando(true);
 
         const form = e.target;
@@ -28,10 +27,9 @@ function SejaVoluntario() {
             );
 
             if (response.ok) {
-                setEnviado(true); // Exibe mensagem de sucesso
-                form.reset();     // Limpa o formulário
+                setEnviado(true);
+                form.reset();
 
-                // Esconde a mensagem depois de 4 segundos
                 setTimeout(() => setEnviado(false), 4000);
             } else {
                 alert("Ocorreu um erro ao enviar o formulário. Tente novamente.");
@@ -39,13 +37,13 @@ function SejaVoluntario() {
         } catch (error) {
             alert("Erro de conexão. Verifique sua rede.");
         } finally {
-            setEnviando(false); // Reabilita o botão
+            setEnviando(false);
         }
     };
 
     return (
         <main>
- 
+
             <div className={styles.heroSection}>
                 <img src="/banner-voluntarios.png" alt="Cartaz Voluntários" className={styles.heroImg} />
             </div>
@@ -62,7 +60,7 @@ function SejaVoluntario() {
 
             <div className={styles.servicesContainer}>
                 <div className={styles.cardsGrid}>
-                    {/* CARD 1 */}
+
                     <div className={styles.flipCard}>
                         <div className={styles.flipCardInner}>
                             <div className={styles.flipCardFront}>
@@ -76,7 +74,7 @@ function SejaVoluntario() {
                         </div>
                     </div>
 
-                    {/* CARD 2 */}
+
                     <div className={styles.flipCard}>
                         <div className={styles.flipCardInner}>
                             <div className={styles.flipCardFront}>
@@ -90,7 +88,7 @@ function SejaVoluntario() {
                         </div>
                     </div>
 
-                    {/* CARD 3 */}
+
                     <div className={styles.flipCard}>
                         <div className={styles.flipCardInner}>
                             <div className={styles.flipCardFront}>
@@ -104,7 +102,7 @@ function SejaVoluntario() {
                         </div>
                     </div>
 
-                    {/* CARD 4 */}
+
                     <div className={styles.flipCard}>
                         <div className={styles.flipCardInner}>
                             <div className={styles.flipCardFront}>
@@ -119,12 +117,12 @@ function SejaVoluntario() {
                     </div>
                 </div>
             </div>
-     
+
 
             <div className={styles.formSection}>
                 <p>Se deseja se tornar um voluntário preencha o formulário de inscrição.</p>
 
-                <form className={styles.form} onSubmit={handleSubmit}> 
+                <form className={styles.form} onSubmit={handleSubmit}>
                     <p className={styles.formTitle}>Formulário de Inscrição</p>
                     <p className={styles.message}>Junte-se a nós e ajude a salvar vidas felinas!</p>
 
@@ -161,7 +159,7 @@ function SejaVoluntario() {
                 </form>
             </div>
 
-      
+
             <footer className={styles.footer}>
                 <div className={styles.footerContent}>
                     <div className={styles.footerContact}>
@@ -201,7 +199,7 @@ function SejaVoluntario() {
                     </div>
                 </div>
             </footer>
-    
+
         </main>
     );
 }

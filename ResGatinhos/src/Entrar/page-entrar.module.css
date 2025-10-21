@@ -1,0 +1,97 @@
+.paginaAdotar {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffb6c1, #ffd1a9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+.topo {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.card h2 {
+  color: #ff69b4;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  text-align: left;
+  color: #555;
+}
+
+input {
+  padding: 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #ff69b4;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #fff;
+  background-color: #ff69b4;
+}
+
+button:hover {
+  background-color: #ff85c1;
+}
+
+.botaoReset {
+  background-color: #ccc;
+  color: #333;
+}
+
+.botaoReset:hover {
+  background-color: #bbb;
+}

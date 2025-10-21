@@ -1,38 +1,106 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
-import style from "./page-home.module.css";
-import { Link } from "react-router-dom";
+import styles from "./page-home.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
-export default function PageHome() {
+export default function PageHome({ user, setUser, image }) {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
+  const videoRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+  const [glow, setGlow] = useState({ x: 50, y: 50 });
+
+  // Animação de scroll da seção de vídeo
+  useEffect(() => {
+    const section = sectionRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            section.classList.add(styles.visible);
+            observer.unobserve(section);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    if (section) observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  // Fecha dropdown se clicar fora
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  // Slick Slider
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
-    speed: 800,
-    autoplaySpeed: 4000,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
   };
 
-  const gatinhos = [
-    { nome: "Márcia", genero: "Fêmea", idade: "Filhote", imagem: "/gato1.jpg" },
-    { nome: "Nino", genero: "Macho", idade: "Adulto", imagem: "/gato2.jpg" },
-    { nome: "Léo", genero: "Macho", idade: "Filhote", imagem: "/gato3.jpg" },
-    { nome: "Ted", genero: "Macho", idade: "Filhote", imagem: "/gato4.jpg" },
-  ];
+  const imagens = ["/banner1.jpg", "/banner2.jpg", "/banner3.jpg"];
 
-  const adotados = [
-    "/adotado1.jpg",
-    "/adotado2.jpg",
-    "/adotado3.jpg",
-    "/adotado4.jpg",
-    "/adotado5.jpg",
-    "/adotado6.jpg",
-    "/adotado7.jpg",
-    "/adotado8.jpg",
+  // Mouse hover efeito 3D nos cards/banner
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 30;
+    const y = ((e.clientY - top) / height - 0.5) * -30;
+    setRotate({ x, y });
+    const glowX = ((e.clientX - left) / width) * 100;
+    const glowY = ((e.clientY - top) / height) * 100;
+    setGlow({ x: glowX, y: glowY });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+    setGlow({ x: 50, y: 50 });
+  };
+
+  // Animações de scroll para outros elementos
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const elements = document.querySelectorAll(
+      `.${styles.textoHero}, .${styles.imgHero}, .${styles.quemSomos}, .${styles.cardGato}`
+    );
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const gatinhos = [
+    { nome: "Luna", imagem: "/gato1.jpg", descricao: "Doce, tranquila e adora um carinho no colo." },
+    { nome: "Tom", imagem: "/gato2.jpg", descricao: "Brincalhão e curioso — impossível não se encantar." },
+    { nome: "Mimi", imagem: "/gato3.jpg", descricao: "Calma e observadora, perfeita para lares tranquilos." },
+    { nome: "Zeca", imagem: "/gato4.jpg", descricao: "Ativo e carinhoso, vai te seguir por toda parte." },
   ];
 
   const playSound = () => {
@@ -41,343 +109,163 @@ export default function PageHome() {
   };
 
   return (
-    <>
-      {/* ====== NAVBAR ====== */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
-        <div className="container">
-          {/* Logo */}
-          <a className="navbar-brand" href="#">
-            <img
-              src="/logo3.ico"
-              alt="Logo"
-              width="70"
-              height="70"
-              className="d-inline-block align-text-top"
-            />
-          </a>
-
-          {/* Toggle button (mobile) */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i className="fas fa-bars"></i>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* Links centrais */}
-            <ul className="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center">
-              <li className="nav-item">
-                <a
-                  className="nav-link d-flex flex-column text-center active ms-3"
-                  href="#"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#4d5154"
-                  >
-                    <path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z" />
-                  </svg>
-                  <span className="big">Inicial</span>
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link d-flex flex-column text-center ms-3"
-                  href="#voluntario"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#4d5154"
-                  >
-                    <path d="m636-457-94-86q-94-87-114-128.5T408-742q0-52 35.5-87t89.5-35q30.18 0 56.59 13Q616-838 636-816q19-23 46-35.5t57.24-12.5q51.99 0 88.37 36.46Q864-791.08 864-739q0 29-19 70T732-543l-96 86Z" />
-                  </svg>
-                  <span className="big">Seja Voluntário</span>
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link d-flex flex-column text-center ms-3"
-                  href="#ajudar"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#4d5154"
-                  >
-                    <path d="M48-96v-432h274q8 0 15 1.5t13.55 3.61L607-431q30 11 47.5 37.25T672-336h47q60.42 0 102.71 42Q864-252 864-192v24L553-72l-265-81v57H48Z" />
-                  </svg>
-                  <span className="big">Como Ajudar</span>
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link d-flex flex-column text-center ms-3"
-                  href="#adote"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#4d5154"
-                  >
-                    <path d="M192.23-480Q152-480 124-507.77q-28-27.78-28-68Q96-616 123.77-644q27.78-28 68-28Q232-672 260-644.23q28 27.78 28 68Q288-536 260.23-508q-27.78 28-68 28Z" />
-                  </svg>
-                  <span className="big">Adote</span>
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link d-flex flex-column text-center ms-3"
-                  href="#contato"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20px"
-                    viewBox="0 -960 960 960"
-                    width="20px"
-                    fill="#4d5154"
-                  >
-                    <path d="M72-144q-29.7 0-50.85-21.15Q0-186.3 0-216v-528q0-29.7 21.15-50.85Q42.3-816 72-816h816q29.7 0 50.85 21.15Q960-773.7 960-744v528q0 29.7-21.15 50.85Q917.7-144 888-144H72Z" />
-                  </svg>
-                  <span className="big">Contato</span>
-                </a>
-              </li>
-
-              {/* Dropdown perfil */}
-              <li className="nav-item dropdown ms-3">
-                <a
-                  className="nav-link dropdown-toggle d-flex align-items-center"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
-                    className="rounded-circle"
-                    height="50"
-                    alt="profile"
-                    loading="lazy"
-                  />
-                </a>
-                <ul
-                  className="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Meu perfil
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Entrar
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Crie uma conta
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+    <div className={styles.home}>
+      {/* ===== NAVBAR ===== */}
+      <header className={styles.navbar}>
+        <div className={styles.logo}>
+          <img src="/logo2.ico" alt="Logo Resgatinhos Blumenal" />
+          <h1>ResGatinhos Blumenau</h1>
         </div>
-      </nav>
 
-      {/* ====== CONTEÚDO PRINCIPAL ====== */}
-      <main className={style.mainContent}>
-        {/* ====== CARROSSEL ====== */}
-        <section className={style.bannerSection}>
-          <Slider {...settings}>
-            <div className={style.bannerItem}>
-              <img src="/banner1.jpg" alt="Banner 1" />
-            </div>
-            <div className={style.bannerItem}>
-              <img src="/banner2.jpg" alt="Banner 2" />
-            </div>
-            <div className={style.bannerItem}>
-              <img src="/banner3.jpg" alt="Banner 3" />
-            </div>
-          </Slider>
-        </section>
+        <nav className={styles.navlinks}>
+          <Link to="/seja-voluntario">Seja Voluntário</Link>
+          <Link to="/como-ajudar">Como Ajudar</Link>
+          <Link to="/adotar">Adote</Link>
+          <Link to="/contato">Contato</Link>
 
-        {/* ====== ADOÇÃO ====== */}
-        <section className={style.adocao} id="adote">
-          <h2>Adoção</h2>
-          <div className={style.gridGatos}>
-            {gatinhos.map((gato, i) => (
-              <div key={i} className={style.cardGato}>
-                <img src={gato.imagem} alt={gato.nome} />
-                <h3>{gato.nome}</h3>
-
-                <div className={style.infoGato}>
-                  <div className={style.itemInfo}>
-                    <span>
-                      {gato.genero === "Fêmea" ? (
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle
-                            cx="12"
-                            cy="8"
-                            r="4"
-                            stroke="#FF1493"
-                            strokeWidth="2"
-                          />
-                          <line
-                            x1="12"
-                            y1="12"
-                            x2="12"
-                            y2="20"
-                            stroke="#FF1493"
-                            strokeWidth="2"
-                          />
-                          <line
-                            x1="8"
-                            y1="16"
-                            x2="16"
-                            y2="16"
-                            stroke="#FF1493"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                      ) : (
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle
-                            cx="12"
-                            cy="12"
-                            r="6"
-                            stroke="#1E90FF"
-                            strokeWidth="2"
-                          />
-                          <line
-                            x1="17"
-                            y1="7"
-                            x2="22"
-                            y2="2"
-                            stroke="#1E90FF"
-                            strokeWidth="2"
-                          />
-                        </svg>
-                      )}
-                    </span>
-                  </div>
-
-                  <div className={style.itemInfo}>
-                    <img
-                      src="/calendar-days-svgrepo-com.svg"
-                      alt="Idade"
-                    />
-                    <span>{gato.idade}</span>
-                  </div>
+          {user ? (
+            <div className={styles.perfilContainer} ref={dropdownRef}>
+              <img
+                src={user.foto}
+                alt="Perfil"
+                className={styles.fotoPerfil}
+                onClick={() => setShowDropdown(!showDropdown)}
+              />
+              {showDropdown && (
+                <div className={styles.dropdownMenu}>
+                  <p style={{ color: "#dba511" }}>Bem-vindo, {user.nome}</p>
+                  <Link to="/perfil" className={styles.dropdownItem}>Meu Perfil</Link>
+                  <Link to="/configuracoes" className={styles.dropdownItem}>Configurações</Link>
+                  <button onClick={() => setUser(null)} className={styles.dropdownSair}>Sair</button>
                 </div>
+              )}
+            </div>
+          ) : (
+            <div className={styles.authButtons}>
+              <button onClick={() => navigate("/login")} className={styles.btnEntrar}>Entrar</button>
+              <button onClick={() => navigate("/criar-conta")} className={styles.btnCriarConta}>Criar Conta</button>
+            </div>
+          )}
+        </nav>
+      </header>
 
-                <button className={style.btnAdotar}>Quero Adotar</button>
+      {/* ===== MAIN ===== */}
+      <main className={styles.mainContent}>
+        {/* ===== BANNER ===== */}
+        <div className={styles.bannerContainer}>
+          <Slider {...settings}>
+            {imagens.map((img, index) => (
+              <div key={index}>
+                <img src={img} alt={`Banner ${index + 1}`} className="banner-img" />
               </div>
             ))}
+          </Slider>
+        </div>
+
+        {/* ===== HERO ===== */}
+        <section className={styles.hero}>
+          <div className={styles.textoHero}>
+            <h2>Transforme uma vida.<br />Adote um gatinho.</h2>
+            <p>Cada gatinho resgatado carrega uma história de superação. Adote e ganhe um amigo para a vida toda.</p>
+            <Link to="/adotar" className={styles.btnHero}>Quero Adotar</Link>
           </div>
-          <button className={style.btnVerTodos}>Ver todos os gatinhos</button>
+          <div className={styles.imgHero}>
+            <img src="/gato1.jpg" alt="Gato feliz" />
+          </div>
         </section>
 
-        {/* ====== ADOTADOS ====== */}
-        <section className={style.adotados}>
-          <h2>Gatinhos Adotados</h2>
-          <div className={style.galeria}>
-            {adotados.map((src, i) => (
-              <img key={i} src={src} alt={`Gato adotado ${i + 1}`} />
-            ))}
+        {/* ===== CONTADOR ===== */}
+        <motion.div
+          className={styles.cardWrapper}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          animate={{ rotateX: rotate.y, rotateY: rotate.x }}
+          transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        ></motion.div>
+
+        {/* ===== VÍDEO ===== */}
+        <section ref={sectionRef} className={styles.videoSecao}>
+          <h2>Assista nossa história</h2>
+          <div className={styles.videoCard}>
+            <video
+              ref={videoRef}
+              controls
+              muted
+              poster="/tbmr.png"
+              className={styles.video}
+            >
+              <source src="/gato.mp4" type="video/mp4" />
+              Seu navegador não suporta o vídeo.
+            </video>
+            <div className={styles.videoOverlay}></div>
           </div>
         </section>
 
-        {/* ====== SOBRE NÓS ====== */}
-        <section className={style.sobre}>
-          <div className={style.sobreTexto}>
-            <h2>Sobre Nós</h2>
-            <p>
-              Somos uma entidade privada de voluntários dedicada ao resgate e
-              adoção de gatos. Trabalhamos com amor e responsabilidade,
-              buscando lares que ofereçam carinho e segurança. Nossos gatinhos
-              são vacinados, vermifugados e castrados. Acreditamos que cada
-              adoção é uma nova chance de felicidade — tanto para o gato quanto
-              para quem adota.
-            </p>
-          </div>
-          <img src="/grupo-gato.png" alt="Grupo de gatos" />
+        {/* ===== MAPA ===== */}
+        <section className={styles.mapa}>
+          <h2>Onde estamos</h2>
+          <iframe
+            title="Mapa do Abrigo"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.2150439500546!2d-46.6559811!3d-23.5975462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c918b3df17%3A0xa3913d3f8648b9b8!2sSPCA!5e0!3m2!1spt-BR!2sbr!4v1671234567890!5m2!1spt-BR!2sbr"
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
         </section>
+
+        {/* ===== GATINHOS ===== */}
+        <div className={styles.gridGatos}>
+          {gatinhos.map((gato, i) => (
+            <div key={i} className={styles.cardGato}>
+              <div className={styles.cardInner}>
+                <div className={styles.cardFront}>
+                  <img src={gato.imagem} alt={gato.nome} />
+                  <h3>{gato.nome}</h3>
+                </div>
+                <div className={styles.cardBack}>
+                  <p>{gato.descricao}</p>
+                  <Link to="/adotar" className={styles.btnAdotar}>Adotar</Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
 
-      {/* ====== RODAPÉ ====== */}
-      <footer className={style.rodape}>
-        <div className={style.contato}>
-          <h3>Contato</h3>
-          <p>E-mail: contato@gatinhosbememeow.com.br</p>
-          <p>Telefone: (47) 99909-9909</p>
-          <div className={style.icones}>
-            <a href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07..." />
-              </svg>
-            </a>
+      {/* ===== FOOTER ===== */}
+      <footer className={styles.rodape}>
+        <div className={styles.containerRodape}>
+          <div className={styles.coluna}>
+            <h3>Contato</h3>
+            <p>contato@resgatinhos.com.br</p>
+            <p>(47) 99909-9909</p>
+          </div>
+
+          <div className={styles.coluna}>
+            <h3>Parcerias</h3>
+            <ul>
+              <li>@bia.blumenau</li>
+              <li>@petamigomeu</li>
+              <li>@larfelizgatos</li>
+            </ul>
+          </div>
+
+          <div className={styles.colunaFinal}>
+            <p className={styles.frase}>“Amor se adota. Cada lar transforma uma vida.”</p>
+            <img
+              src="/gato-rodape.png"
+              alt="Gatinho rodapé"
+              onClick={playSound}
+              className={styles.gato}
+            />
+            <audio id="meow-som">
+              <source src="/meow.mp3" type="audio/mpeg" />
+            </audio>
           </div>
         </div>
-
-        <div className={style.parcerias}>
-          <h3>Parcerias</h3>
-          <p>@bia.blumenau</p>
-          <p>@petamigomeu</p>
-          <p>@larfelizgatos</p>
-        </div>
-
-        <div className={style.fraseFinal}>
-          <p>Nós merecemos um lar cheio de amor</p>
-          <img
-            src="/gato-rodape.png"
-            alt="Gatinho rodapé"
-            onClick={playSound}
-            style={{ cursor: "pointer" }}
-          />
-          <audio id="meow-som">
-            <source src="/meow.mp3" type="audio/mpeg" />
-          </audio>
+        <div className={styles.copy}>
+          <p>© 2025 ResGatinhos — Todos os direitos reservados</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

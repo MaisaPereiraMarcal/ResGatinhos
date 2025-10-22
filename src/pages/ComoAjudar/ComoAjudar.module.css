@@ -1,16 +1,22 @@
-body, html, #root {
+body,
+html,
+#root {
     margin: 0;
     padding: 0;
     width: 100%;
     /* Impede barra de rolagem horizontal se algo ultrapassar 100% da largura */
-    overflow-x: hidden; 
-    box-sizing: border-box; /* Garante que padding e border não adicionem largura total */
+    overflow-x: hidden;
+    box-sizing: border-box;
+    /* Garante que padding e border não adicionem largura total */
 }
 
 /* Garante que todos os elementos filhos se comportem corretamente com box-sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
+
 /* Estilos Gerais e Reset (Ajustado para seu app já ter um reset global) */
 .container {
     font-family: 'Inter', sans-serif;
@@ -21,14 +27,15 @@ body, html, #root {
 /* Container de Conteúdo (Limita a largura para o texto e seções) */
 .contentWrapper {
     max-width: 1200px;
-    margin: 0 auto; 
-    padding: 40px 20px; 
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
 /* Título Principal */
 .mainTitle {
     text-align: center;
-    color: rgb(90, 1, 89); /* Roxo */
+    color: rgb(90, 1, 89);
+    /* Roxo */
     font-size: 2.5rem;
     margin-top: 20px;
     margin-bottom: 60px;
@@ -37,12 +44,12 @@ body, html, #root {
 
 /* Estilos do Banner (Full Width - Apenas visual) */
 .bannerSection {
-    width: 100%; 
-    overflow: hidden; 
+    width: 100%;
+    overflow: hidden;
 }
 
 .bannerImage {
-    width: 100%; 
+    width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
@@ -58,7 +65,8 @@ body, html, #root {
 }
 
 .sectionTitle {
-    color:rgba(129, 0, 127, 1); /* Laranja em destaque */
+    color: rgba(129, 0, 127, 1);
+    /* Laranja em destaque */
     font-size: 2rem;
     font-weight: 700;
     border-bottom: 4px solid #f7f7f7;
@@ -74,13 +82,13 @@ body, html, #root {
 }
 
 .itemImageContainer {
-    flex: 0 0 350px; 
+    flex: 0 0 350px;
     max-width: 40%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: float 3s ease-in-out infinite;
-    
+
 }
 
 .itemImage {
@@ -104,8 +112,9 @@ body, html, #root {
 /* --- GRID CRIATIVO DE ITENS --- */
 .creativeGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px; /* Espaçamento reduzido */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    /* Espaçamento reduzido */
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -113,7 +122,8 @@ body, html, #root {
 .creativeItem {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #fce8fd 0%, #fff 100%); /* Gradiente suave */
+    background: linear-gradient(135deg, #fce8fd 0%, #fff 100%);
+    /* Gradiente suave */
     border: 1px solid #e1e1e1;
     padding: 15px;
     border-radius: 10px;
@@ -122,14 +132,16 @@ body, html, #root {
 
 .creativeItem:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(255, 159, 67, 0.15); /* Sombra sutil laranja */
+    box-shadow: 0 6px 15px rgba(255, 159, 67, 0.15);
+    /* Sombra sutil laranja */
 }
 
 .itemIconImage {
-    width: 40px; /* Tamanho do ícone */
+    width: 40px;
+    /* Tamanho do ícone */
     height: 40px;
     margin-right: 15px;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
 .itemText {
@@ -166,7 +178,7 @@ body, html, #root {
 }
 
 .primaryBtn {
-    background-color:rgba(129, 0, 127, 1);
+    background-color: rgba(129, 0, 127, 1);
     color: white;
     border: 2px solid rgb(180, 2, 177);
 }
@@ -179,9 +191,17 @@ body, html, #root {
 
 /* Animação para a imagem */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 
@@ -191,7 +211,7 @@ body, html, #root {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .itemImageContainer {
         max-width: 100%;
         flex: none;
@@ -200,7 +220,8 @@ body, html, #root {
     }
 
     .creativeGrid {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        grid-template-columns: 1fr;
+        /* Uma coluna em mobile */
         text-align: left;
     }
 
@@ -212,4 +233,52 @@ body, html, #root {
         width: 100%;
         max-width: none;
     }
+}
+
+.card {
+    padding: 20px;
+    width: 330px;
+    min-height: 370px;
+    border-radius: 20px;
+    background: #212121;
+    box-shadow: 5px 5px 8px #1b1b1b,
+        -5px -5px 8px #272727;
+    transition: 0.4s;
+}
+
+.card:hover {
+    translate: 0 -10px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #b2eccf;
+    margin: 15px 0 0 10px;
+}
+
+.card-image {
+    min-height: 170px;
+    background-color: #313131;
+    border-radius: 15px;
+    background: #313131;
+    box-shadow: inset 5px 5px 3px #2f2f2f,
+        inset -5px -5px 3px #333333;
+}
+
+.card-body {
+    margin: 13px 0 0 10px;
+    color: rgb(184, 184, 184);
+    font-size: 15px;
+}
+
+.footer {
+    float: right;
+    margin: 28px 0 0 18px;
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+.by-name {
+    font-weight: 700;
 }

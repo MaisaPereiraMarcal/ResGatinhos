@@ -8,7 +8,7 @@
 .headerContent {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* **CRUCIAL: Garante o alinhamento vertical de todos os itens (incluindo a logo) */
+    align-items: center; 
     padding: 10px 40px;
     width: 100%;
     background-color: rgba(203, 138, 196, 1);
@@ -104,7 +104,6 @@
     transform: scale(1.03);
 }
 
-/* --- Media Queries --- */
 
 @media (max-width: 992px) {
     .headerContent {
@@ -130,15 +129,15 @@
     .headerContent {
         flex-direction: column;
         padding: 10px 20px 20px;
-        align-items: center; /* Centralizando no modo coluna */
+        align-items: center; 
     }
 
     .logoImg {
-        height: 70px; /* Mais um ajuste para telas pequenas */
+        height: 70px; 
     }
 
     .logoSection {
-        margin-bottom: 5px; /* Pequena margem para separar da navegação */
+        margin-bottom: 5px;
         width: 100%;
         justify-content: center;
     }

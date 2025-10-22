@@ -2,10 +2,7 @@ import React from 'react';
 import headerStyles from './Header.module.css';
 import { Link } from 'react-router-dom';
 
-// REMOVA todas as importações de páginas daqui (Home, Adote, Contato, etc.)
-
 function Header({ isLoggedIn, onLogout }) {
-    // ... (O restante do seu código HTML/JSX aqui) ...
     return (
 
 

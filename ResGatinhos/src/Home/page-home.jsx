@@ -198,7 +198,7 @@ export default function PageHome({ user, setUser, image }) {
           <h2>Onde estamos</h2>
           <iframe
             title="Mapa do Abrigo"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.2150439500546!2d-46.6559811!3d-23.5975462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c918b3df17%3A0xa3913d3f8648b9b8!2sSPCA!5e0!3m2!1spt-BR!2sbr!4v1671234567890!5m2!1spt-BR!2sbr"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.2020564696854!2d-49.0902536!3d-26.8016942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dee114d4bde35b%3A0xf835e4209ea4be1b!2sCEPREAD%20Centro%20de%20Preven%C3%A7%C3%A3o%20e%20Recupera%C3%A7%C3%A3o%20de%20Animais%20Dom%C3%A9sticos!5e0!3m2!1spt-BR!2sbr!4v1761064306882!5m2!1spt-BR!2sbr"
             allowFullScreen
             loading="lazy"
           ></iframe>
@@ -221,6 +221,78 @@ export default function PageHome({ user, setUser, image }) {
           ))}
         </div>
       </main>
+
+
+<div className={styles.cardContainer}>
+
+  {/* 🐾 Faça Parte da Mudança */}
+  <div className={styles.card}>
+    {/* Coração com patinha */}
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#333" d="M32 58s-1-.4-1-1c-6-6-11-11-16-16C7 37 4 32 4 26a14 14 0 0126-8 14 14 0 0126 8c0 6-3 11-11 15-5 3-10 8-16 15z"/>
+      <circle cx="22" cy="22" r="3" fill="#333"/>
+      <circle cx="42" cy="22" r="3" fill="#333"/>
+      <circle cx="32" cy="18" r="2.5" fill="#333"/>
+      <circle cx="27" cy="27" r="2.5" fill="#333"/>
+    </svg>
+    <div className={styles.card__content}>
+      <p className={styles.card__title}>Faça Parte da Mudança</p>
+      <p className={styles.card__description}>
+        Adotar é mudar uma vida — e ganhar um amigo fiel.
+      </p>
+    </div>
+  </div>
+
+  {/* 🧶 Como Ajudar */}
+  <div className={styles.card}>
+    {/* Mão segurando coração */}
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 10h4v2h-4v4h-2v-4H7v-2h4V8h2v4z"/>
+    </svg>
+    <div className={styles.card__content}>
+      <p className={styles.card__title}>Como Ajudar</p>
+      <p className={styles.card__description}>
+        Doe ração, remédios ou tempo. Toda ajuda conta!
+      </p>
+    </div>
+  </div>
+
+  {/* 💌 Transparência */}
+  <div className={styles.card}>
+    {/* Documento com check */}
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="8" width="40" height="48" rx="4" fill="#333"/>
+      <path fill="none" stroke="#fff" strokeWidth="3" d="M22 32l8 8 12-12"/>
+    </svg>
+    <div className={styles.card__content}>
+      <p className={styles.card__title}>Transparência</p>
+      <p className={styles.card__description}>
+        Doações com clareza e respeito sempre.
+      </p>
+    </div>
+  </div>
+
+  {/* 🐾 Seja Voluntário */}
+  <div className={styles.card}>
+    {/* Pessoa com gato */}
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="16" r="8" fill="#333"/>
+      <path fill="#333" d="M16 56v-8a12 12 0 0112-12h8a12 12 0 0112 12v8H16z"/>
+      <path fill="#333" d="M45 30c2-2 4-2 6 0s2 4 0 6-4 2-6 0-2-4 0-6z"/>
+    </svg>
+    <div className={styles.card__content}>
+      <p className={styles.card__title}>Seja Voluntário</p>
+      <p className={styles.card__description}>
+        Ajude nos resgates, feiras e redes. Faça parte!
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+
+
 
       {/* ===== FOOTER ===== */}
       <footer className={styles.rodape}>

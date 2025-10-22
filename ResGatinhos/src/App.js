@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const Home = lazy(() => import("./Home/page-home"));
+const Home = lazy(() => import("./loading/page-loading"));
 const QueroAdotar = lazy(() => import("./Quero-adotar/page-quero-adotar"));
 const Adotar = lazy(() => import("./Adotar/page-adotar"));
 const Contato = lazy(() => import("./Contato/page-contato"));

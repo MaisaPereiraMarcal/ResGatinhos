@@ -1,54 +1,53 @@
-body, html, #root {
+body,
+html,
+#root {
     margin: 0;
     padding: 0;
     width: 100%;
-    /* Impede barra de rolagem horizontal se algo ultrapassar 100% da largura */
-    overflow-x: hidden; 
-    box-sizing: border-box; /* Garante que padding e border não adicionem largura total */
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-/* Garante que todos os elementos filhos se comportem corretamente com box-sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
-/* Estilos Gerais e Reset (Ajustado para seu app já ter um reset global) */
+
 .container {
     font-family: 'Inter', sans-serif;
     background-color: #f7f7f7;
     min-height: 100vh;
+    padding-bottom: 50px;
 }
 
-/* Container de Conteúdo (Limita a largura para o texto e seções) */
 .contentWrapper {
     max-width: 1200px;
-    margin: 0 auto; 
-    padding: 40px 20px; 
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* Título Principal */
 .mainTitle {
     text-align: center;
-    color: rgb(90, 1, 89); /* Roxo */
+    color: #5a0159;
     font-size: 2.5rem;
     margin-top: 20px;
     margin-bottom: 60px;
     font-weight: 700;
 }
 
-/* Estilos do Banner (Full Width - Apenas visual) */
 .bannerSection {
-    width: 100%; 
-    overflow: hidden; 
+    width: 100%;
+    overflow: hidden;
 }
 
 .bannerImage {
-    width: 100%; 
+    width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
 }
 
-/* === Estilos da Seção de Doação de Itens === */
 .donationSection {
     margin-bottom: 70px;
     padding: 30px;
@@ -58,7 +57,7 @@ body, html, #root {
 }
 
 .sectionTitle {
-    color:rgba(129, 0, 127, 1); /* Laranja em destaque */
+    color: #5a0159;
     font-size: 2rem;
     font-weight: 700;
     border-bottom: 4px solid #f7f7f7;
@@ -74,13 +73,12 @@ body, html, #root {
 }
 
 .itemImageContainer {
-    flex: 0 0 350px; 
+    flex: 0 0 350px;
     max-width: 40%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: float 3s ease-in-out infinite;
-    
 }
 
 .itemImage {
@@ -101,11 +99,10 @@ body, html, #root {
     margin-bottom: 20px;
 }
 
-/* --- GRID CRIATIVO DE ITENS --- */
 .creativeGrid {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px; /* Espaçamento reduzido */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     margin-top: 20px;
     margin-bottom: 30px;
 }
@@ -113,7 +110,7 @@ body, html, #root {
 .creativeItem {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #fce8fd 0%, #fff 100%); /* Gradiente suave */
+    background: linear-gradient(135deg, #fce8fd 0%, #fff 100%);
     border: 1px solid #e1e1e1;
     padding: 15px;
     border-radius: 10px;
@@ -122,14 +119,14 @@ body, html, #root {
 
 .creativeItem:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(255, 159, 67, 0.15); /* Sombra sutil laranja */
+    box-shadow: 0 6px 15px rgba(255, 159, 67, 0.15);
 }
 
 .itemIconImage {
-    width: 40px; /* Tamanho do ícone */
+    width: 40px;
     height: 40px;
     margin-right: 15px;
-    object-fit: contain; 
+    object-fit: contain;
 }
 
 .itemText {
@@ -137,7 +134,7 @@ body, html, #root {
 }
 
 .listTitle {
-    color: rgba(129, 0, 127, 1);
+    color: #5a0159;
     font-size: 1.1rem;
     font-weight: 700;
     margin: 0;
@@ -149,7 +146,6 @@ body, html, #root {
     margin: 0;
 }
 
-/* --- Botão --- */
 .contactButton {
     display: inline-block;
     padding: 12px 30px;
@@ -166,41 +162,126 @@ body, html, #root {
 }
 
 .primaryBtn {
-    background-color:rgba(129, 0, 127, 1);
+    background-color: #5a0159;
     color: white;
-    border: 2px solid rgb(180, 2, 177);
+    border: 2px solid #7e027d;
 }
 
 .primaryBtn:hover {
-    background-color: rgb(197, 1, 194);
-    box-shadow: 0 4px 10px rgba(87, 75, 144, 0.2);
+    background-color: #7e027d;
+    box-shadow: 0 4px 10px rgba(90, 1, 89, 0.25);
     transform: translateY(-2px);
 }
 
-/* Animação para a imagem */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
+.cardsSection {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
 
-/* --- Responsividade --- */
+.helpCard {
+    border-radius: 14px;
+    padding: 28px;
+    color: white;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid transparent;
+    backdrop-filter: blur(6px);
+}
+
+.helpCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cardContent {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.cardImageContainer {
+    position: relative;
+    flex-shrink: 0;
+    width: 250px;
+    height: 180px;
+    display: block;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cardText {
+    flex-grow: 1;
+}
+
+.cardHeadline {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.cardDescription {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* === NOVOS ESTILOS MELHORADOS === */
+.card-purple {
+    background: linear-gradient(135deg, #5a0159 0%, #7e027d 100%);
+}
+
+.card-yellow {
+    background: linear-gradient(135deg, #ffb300 0%, #ffce54 100%);
+    color: #fff;
+}
+
+.card-purple:hover {
+    box-shadow: 0 8px 25px rgba(90, 1, 89, 0.45);
+}
+
+.card-yellow:hover {
+    box-shadow: 0 8px 25px rgba(255, 179, 0, 0.45);
+}
+
+/* Responsividade */
 @media (max-width: 900px) {
     .sectionContent {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .itemImageContainer {
         max-width: 100%;
         flex: none;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin: 20px 0;
     }
 
     .creativeGrid {
-        grid-template-columns: 1fr; /* Uma coluna em mobile */
+        grid-template-columns: 1fr;
         text-align: left;
     }
 
@@ -210,6 +291,26 @@ body, html, #root {
 
     .contactButton {
         width: 100%;
-        max-width: none;
     }
 }
+
+@media (max-width: 768px) {
+    .helpCard {
+        padding: 20px;
+    }
+
+    .cardContent {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cardImageContainer {
+        width: 100%;
+        height: 200px;
+    }
+
+    .cardHeadline {
+        text-align: center;
+    }
+}
+

@@ -142,6 +142,45 @@ function ComoAjudar() {
             </div>
           ))}
         </section>
+        <footer className={styles.footer}>
+                <div className={styles.footerContent}>
+                    <div className={styles.footerContact}>
+                        <h3>Contato</h3>
+                        <p>E-mail: contato@resgatinhosblumenau.com.br</p>
+                        <p>Telefone: 47 99999-9999</p>
+                        <div className={styles.socialIcons}>
+                            <a href="https://www.facebook.com/resgatinhosblumenau" target="_blank" rel="noopener noreferrer">
+                                <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="Facebook" />
+                            </a>
+                            <a href="https://www.instagram.com/resgatinhosblumenau/" target="_blank" rel="noopener noreferrer">
+                                <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className={styles.footerPartners}>
+                        <h3>Parcerias</h3>
+                        <p>@fa.blumenau</p>
+                        <p>@petgramnatural</p>
+                        <p>@fangpetstore</p>
+                    </div>
+
+                    <div className={styles.footerCat}>
+                        <p className={styles.catMessage}>
+                            Nós merecemos um lar cheio de amor
+                        </p>
+                        <img
+                            src="/gatinho.png"
+                            alt="Gatinho olhando"
+                            className={styles.catImage}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = "/gatinho.png";
+                            }}
+                        />
+                    </div>
+                </div>
+            </footer>
       </div>
     </div>
   );

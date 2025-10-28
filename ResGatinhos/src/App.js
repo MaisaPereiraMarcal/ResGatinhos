@@ -1,7 +1,9 @@
 import React, { Suspense, lazy, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const Home = lazy(() => import("./loading/page-loading"));
+
+const Home = lazy(() => import("./Home/page-home"));
+
 const QueroAdotar = lazy(() => import("./Quero-adotar/page-quero-adotar"));
 const Adotar = lazy(() => import("./Adotar/page-adotar"));
 const Contato = lazy(() => import("./Contato/page-contato"));
@@ -11,12 +13,13 @@ const CriarConta = lazy(() => import("./Cadastrar/page-cadastrar"));
 const Login = lazy(() => import("./Entrar/page-entrar"));
 
 function App() {
-  const [user, setUser] = useState(null); // estado global
+  const [user, setUser] = useState(null);
 
   return (
     <Router>
       <Suspense fallback={<Loading />}>
         <Routes>
+          {/* Home será a página principal */}
           <Route path="/" element={<Home user={user} setUser={setUser} />} />
           <Route path="/quero-adotar" element={<QueroAdotar />} />
           <Route path="/adotar" element={<Adotar />} />

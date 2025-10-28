@@ -7,6 +7,39 @@ import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 
 export default function PageHome({ user, setUser, image }) {
+
+
+//depoimentos
+ const depoimentos = [
+    { img: "/luna.jpeg", texto: "“A Luna mudou minha vida. Hoje, ela é a alegria da casa!”", nome: "Marina, adotante" },
+    { img: "/tom.jpg", texto: "“O Tom me escolheu na feira de adoção. Desde então, somos inseparáveis.”", nome: "Pedro, adotante" },
+    { img: "/mimi.jpeg", texto: "“A Mimi chegou assustada, mas hoje é a dona do sofá!”", nome: "Ana, adotante" },
+    { img: "/zeca.webp", texto: "“O Zeca transformou minha rotina. Agora, a casa tem vida!”", nome: "João, adotante" },
+    { img: "/nina.jpg", texto: "“Adotar a Nina foi o melhor presente que já me dei.”", nome: "Carla, adotante" },
+    { img: "/felix.jpg", texto: "“O Felix me ensina todos os dias o que é amor de verdade.”", nome: "Lucas, adotante" },
+    { img: "/mel.jpg", texto: "“A Mel trouxe paz e alegria pra minha família. Não tem preço.”", nome: "Sofia, adotante" },
+    { img: "/tigrinho.jpg", texto: "“O Tigrinho era tímido, mas virou o rei da casa.”", nome: "Bruno, adotante" },
+    { img: "/lili.jpg", texto: "“A Lili me faz rir todos os dias. É puro amor em forma de gato.”", nome: "Rafaela, adotante" },
+    { img: "/thor.jpg", texto: "“O Thor chegou pequeno, mas preencheu um espaço enorme no meu coração.”", nome: "Diego, adotante" },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % Math.ceil(depoimentos.length / 3));
+    }, 5000); // troca a cada 5 segundos
+    return () => clearInterval(interval);
+  }, [depoimentos.length]);
+
+  const start = index * 3;
+  const visibleDepoimentos = depoimentos.slice(start, start + 3);
+
+
+
+
+
+
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -102,8 +135,8 @@ export default function PageHome({ user, setUser, image }) {
       {/* ===== NAVBAR ===== */}
       <header className={styles.navbar}>
         <div className={styles.logo}>
-          <img src="/logo2.ico" alt="Logo Resgatinhos Blumenal" />
-          <h1>ResGatinhos Blumenau</h1>
+          <img src="/logotipo2.png" alt="Logo Resgatinhos Blumenal" />
+           <h1>ResGatinhos Blumenau</h1> 
         </div>
 
         <nav className={styles.navlinks}>
@@ -166,14 +199,22 @@ export default function PageHome({ user, setUser, image }) {
           </div>
         </section>
 
-        {/* ===== CONTADOR =====
-        <motion.div
-          className={styles.cardWrapper}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          animate={{ rotateX: rotate.y, rotateY: rotate.x }}
-          transition={{ type: "spring", stiffness: 120, damping: 20 }}
-        ></motion.div> */}
+       {/* ===== INDICADORES ===== */}
+<section className={styles.indicadores}>
+  <div className={styles.indicador}>
+    <h3>+200</h3>
+    <p>Gatos adotados</p>
+  </div>
+  <div className={styles.indicador}>
+    <h3>+30</h3>
+    <p>Voluntários ativos</p>
+  </div>
+  <div className={styles.indicador}>
+    <h3>Desde 2019</h3>
+    <p>Transformando vidas</p>
+  </div>
+</section>
+
 
         {/* ===== VÍDEO ===== */}
         <section ref={sectionRef} className={styles.videoSecao}>
@@ -203,7 +244,50 @@ export default function PageHome({ user, setUser, image }) {
             loading="lazy"
           ></iframe>
         </section>
-{/* ===== QUEM SOMOS ===== */} <section className={styles.quemSomos}> <div className={styles.textoQuemSomos}> <h2>Quem Somos — Projeto ResGatinhos</h2> <p> Somos um grupo apaixonado por felinos, dedicado ao resgate, cuidado e adoção responsável de gatinhos em situação de abandono. Nosso objetivo é transformar histórias de dor em finais felizes, unindo cada bichano a um novo lar cheio de amor. 💜 </p> </div> <div className={styles.cardGatoAnimado}> <img src="/gato-animado.gif" alt="Gatinho brincando" title="Gatinho resgatado feliz" /> </div> </section> {/* ===== GATINHOS ===== */}
+
+
+{/* ===== MISSÃO / VISÃO / VALORES ===== */}
+<section className={styles.mvvSection}>
+  <h2>Nosso Propósito</h2>
+  <div className={styles.mvvCards}>
+    <div className={styles.mvvCard}>
+      <img src="/icon-pata.png" alt="Missão" />
+      <h3>Missão</h3>
+      <p>Resgatar, cuidar e encontrar lares cheios de amor para gatos em situação de abandono.</p>
+    </div>
+    <div className={styles.mvvCard}>
+      <img src="/icon-coracao.png" alt="Visão" />
+      <h3>Visão</h3>
+      <p>Um mundo onde cada gato tenha um lar seguro, amoroso e respeitoso.</p>
+    </div>
+    <div className={styles.mvvCard}>
+      <img src="/icon-amor.png" alt="Valores" />
+      <h3>Valores</h3>
+      <p>Empatia, responsabilidade e transparência em cada resgate e adoção.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+{/* ===== QUEM SOMOS ===== */} 
+<section className={styles.quemSomos}> <div className={styles.textoQuemSomos}> 
+    <h1 className={styles.h2_tl}>Quem Somos?</h1>  <h2>Projeto ResGatinhos</h2>
+    <p> Somos um grupo apaixonado por felinos, dedicado ao resgate,
+         cuidado e adoção responsável de gatinhos em situação de abandono.
+          Nosso objetivo é transformar histórias de dor em finais felizes, unindo 
+          cada bichano a um novo lar cheio de amor.  </p>
+           </div> <div className={styles.cardGatoAnimado}>
+             <img src="/gato-animado.gif" alt="Gatinho brincando" title="Gatinho resgatado feliz" /> 
+             </div> 
+             </section> 
+
+             {/* ===== GATINHOS ===== */}
         <div className={styles.gridGatos}>
           {gatinhos.map((gato, i) => (
             <div key={i} className={styles.cardGato}>
@@ -221,6 +305,112 @@ export default function PageHome({ user, setUser, image }) {
           ))}
         </div>
       </main>
+
+
+
+
+
+{/* ===== TV ULTRA REALISTA ===== */}
+<div className={styles.tvContainer}>
+  {/* Tela da TV */}
+  <div className={styles.tvScreen}>
+    <div className={styles.tvTicker}>
+      <span>
+        🚨 Campanha de adoção neste fim de semana! | 🚨 Castração gratuita disponível | 🚨 Dicas para deixar seu gato mais confiante | 🚨 Como ajudar ONGs locais
+      </span>
+    </div>
+    <div className={styles.tvContent}>
+      <img src="/gato-irado.jpg" alt="Gato na TV" />
+    </div>
+  </div>
+
+  {/* Botões laterais */}
+  <div className={styles.tvButtons}>
+    <div className={styles.btn}></div>
+    <div className={styles.btn}></div>
+    <div className={styles.btn}></div>
+  </div>
+
+  {/* Antena */}
+  <div className={styles.tvAntenna}></div>
+
+  {/* Luz de power */}
+  <div className={styles.tvPower}></div>
+
+  {/* Rodapé da TV */}
+  <div className={styles.tvFooter}>
+    <span>Canal ResGatinhos • Ao vivo</span>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{/* ===== NOTÍCIAS E DICAS ===== */}
+<section className={styles.newsSection}>
+  <h2> Notícias & Dicas do Mundo Pet</h2>
+
+  <div className={styles.newsGrid}>
+    <article className={styles.newsCard}>
+      <img src="/vacina.jpg" alt="Vacinação Pet" />
+      <div className={styles.newsContent}>
+        <h3>Campanha de Vacinação Gratuita</h3>
+        <p>Confira as datas da nova campanha de vacinação para cães e gatos no seu bairro.</p>
+        <a href="https://www.instagram.com/resgatinhosblumenau/" className={styles.newsLink}>Ler mais →</a>
+      </div>
+    </article>
+
+    <article className={styles.newsCard}>
+      <img src="/alimentacao.jpg" alt="Alimentação saudável" />
+      <div className={styles.newsContent}>
+        <h3>Como montar uma dieta saudável pro seu pet</h3>
+        <p>Veterinários explicam como equilibrar ração e petiscos sem prejudicar a saúde do bichinho.</p>
+        <a href="https://www.instagram.com/resgatinhosblumenau/" className={styles.newsLink}>Ler mais →</a>
+      </div>
+    </article>
+
+    <article className={styles.newsCard}>
+      <img src="/adocao.jpeg" alt="Feira de adoção" />
+      <div className={styles.newsContent}>
+        <h3>Feira de Adoção neste Domingo!</h3>
+        <p>Venha conhecer gatinhos e cãezinhos em busca de um lar cheio de amor. </p>
+        <a href="https://www.instagram.com/resgatinhosblumenau/" className={styles.newsLink}>Ler mais →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+
+
+<section className={styles.depoSection}>
+      <h2>Histórias que Derretem o Coração </h2>
+
+      <div className={styles.carousel}>
+        {visibleDepoimentos.map((d, i) => (
+          <div className={styles.depoCard} key={i}>
+            <img src={d.img} alt={d.nome} />
+            <p>{d.texto}</p>
+            <span>— {d.nome}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.dots}>
+        {Array.from({ length: Math.ceil(depoimentos.length / 3) }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`${styles.dot} ${index === i ? styles.active : ""}`}
+          />
+        ))}
+      </div>
+    </section>
+
 
 
 <div className={styles.cardContainer}>
@@ -290,7 +480,18 @@ export default function PageHome({ user, setUser, image }) {
 
 </div>
 
-
+{/* ===== DOAÇÃO ===== */}
+<section className={styles.doacao}>
+  <h2>Ajude a Salvar Vidas </h2>
+  <p>Com sua doação, garantimos ração, cuidados e muito amor aos gatinhos.</p>
+  <div className={styles.doacaoBox}>
+    <img src="/qrcode-pix.png" alt="QR Code PIX" />
+    <div>
+      <p><strong>Chave PIX:</strong> contato@resgatinhosblumenau.com.br</p>
+      <p>Ou doe via <a href="#">PicPay</a> / <a href="#">PayPal</a></p>
+    </div>
+  </div>
+</section>
 
 
 

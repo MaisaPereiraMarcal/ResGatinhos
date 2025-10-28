@@ -1,12 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Poppins:wght@300;400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
 h1, h2, h3, h4 {
   font-family: 'Baloo 2', cursive;
 }
 
 body, p, a, button {
   font-family: 'Poppins', sans-serif;
+}
+
+.h2_tl{
+  font-size: 5rem;
+  color: #d682e9b2;
+  margin-bottom: 10px;
+  animation: slideInLeft 1s ease;
 }
 
 :root {
@@ -32,7 +39,7 @@ body {
 /* ===== NAVBAR ===== */
 .navbar {
   width: 100%;
-  background: var(--branco);
+  background-color: #CB8AC4;
   box-shadow: var(--sombra);
   display: flex;
   justify-content: space-between;
@@ -54,7 +61,7 @@ body {
 }
 
 .logo img {
-  height: 45px;
+  height: 5em;
   transition: var(--transicao);
 }
 
@@ -63,9 +70,29 @@ body {
 }
 
 .logo h1 {
+  margin-top: 0.5em;
+  font-family: "Berkshire Swash", serif;
+  font-size: 1.6rem;
+  font-weight: 600;
   color: var(--roxo-principal);
-  font-size: 1.3rem;
-  font-weight: 700;
+  margin-top: 0.5em;
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+
+
+
+.logo:hover h1 {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+  .logo h1::after {
+    width: 60%;
+  }
 }
 
 .navlinks {
@@ -76,7 +103,7 @@ body {
 
 .navlinks a {
   text-decoration: none;
-  color: #333;
+  color: #000000d3;
   font-weight: 500;
   transition: var(--transicao);
   position: relative;
@@ -105,7 +132,7 @@ body {
 /* ===== BOTÕES AUTH ===== */
 .btnEntrar,
 .btnCriarConta {
-  background: var(--roxo-principal);
+  background-color: #FFB91D;
   color: var(--branco);
   border: none;
   padding: 8px 16px;
@@ -119,7 +146,7 @@ body {
 
 .btnEntrar:hover,
 .btnCriarConta:hover {
-  background: var(--roxo-claro);
+  background-color: #ffb71d6e;
   transform: scale(1.1);
 }
 
@@ -295,7 +322,16 @@ body {
   width: 90%;
   animation: fadeInUp 1.2s ease;
 }
-
+.quemSomos img {
+  
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+.quemSomos img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 80px rgba(108, 26, 126, 0.747);
+  transition: var(--transicao);
+}
 .textoQuemSomos {
   flex: 1;
 }
@@ -383,9 +419,10 @@ body {
 }
 
 .cardFront img {
-  width: 100%;
-  height: 70%;
+  width: 90%;
+  height: 70%; 
   object-fit: cover;
+  border-radius: 1em;
 }
 
 .cardFront h3 {
@@ -625,6 +662,495 @@ body {
   transform: rotate(-45deg);
 }
 /* fim do card novo
+
+
+
+/* Missão */
+.mvvSection {
+  text-align: center;
+  padding: 80px 5%;
+  background: #fffaf5;
+}
+.mvvSection h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+.mvvCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+.mvvCard {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  width: 280px;
+  transition: transform 0.3s;
+}
+.mvvCard:hover {
+  transform: translateY(-8px);
+}
+.mvvCard img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+.mvvCard h3 {
+  color: #d98a25;
+  margin-bottom: 10px;
+}
+
+
+
+
+/* Depoimentos */
+.depoSection {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #fff8f3 0%, #fff 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.depoSection h2 {
+  font-size: 2rem;
+  color: #ff914d;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(255, 145, 77, 0.3);
+  animation: popIn 1s ease both;
+}
+
+/* ===== CARROSSEL ===== */
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.5rem;
+  transition: all 0.5s ease;
+}
+
+.depoCard {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  width: 280px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.depoCard:nth-child(1) { animation-delay: 0.1s; }
+.depoCard:nth-child(2) { animation-delay: 0.2s; }
+.depoCard:nth-child(3) { animation-delay: 0.3s; }
+
+.depoCard:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(255, 145, 77, 0.25);
+}
+
+.depoCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #ff914d, #ffb347);
+  opacity: 0;
+  transition: 0.3s;
+}
+.depoCard:hover::before {
+  opacity: 1;
+}
+
+.depoCard img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffb347;
+  margin-bottom: 0.8rem;
+  transition: 0.3s ease;
+}
+.depoCard:hover img {
+  transform: rotate(3deg) scale(1.05);
+  border-color: #ff914d;
+}
+
+.depoCard p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+  font-style: italic;
+  margin-bottom: 0.6rem;
+}
+
+.depoCard span {
+  font-size: 0.85rem;
+  color: #ff914d;
+  font-weight: 600;
+}
+
+/* ===== BOLINHAS (INDICADORES) ===== */
+.dots {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffd4ad;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dot:hover {
+  background: #ffb347;
+}
+
+.active {
+  background: #ff914d;
+  transform: scale(1.2);
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .carousel {
+    flex-direction: column;
+    align-items: center;
+  }
+  .depoCard {
+    width: 90%;
+    max-width: 340px;
+  }
+}
+
+
+
+
+/* ===== BLOG / NOTÍCIAS ===== */
+/* ===== FAIXA DE MANCHETES ===== */
+.headlineBar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #ff6f61, #ffa07a);
+  color: white;
+  padding: 12px 20px;
+  overflow: hidden;
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 40px;
+}
+
+.headlineTitle {
+  flex-shrink: 0;
+  margin-right: 15px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.headlineScroll {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.headlineScroll span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollHeadlines 20s linear infinite;
+}
+
+@keyframes scrollHeadlines {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+
+
+
+/* blog */
+.newsSection {
+  background: #fff8f5;
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.newsSection h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #ff6f61;
+  font-weight: 700;
+  text-shadow: 1px 1px #fff;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.newsCard {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: left;
+}
+
+.newsCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(255, 111, 97, 0.3);
+}
+
+.newsCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.newsContent {
+  padding: 20px;
+}
+
+.newsContent h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.newsContent p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.newsLink {
+  font-weight: 600;
+  color: #ff6f61;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.newsLink:hover {
+  color: #ff3d2f;
+}
+
+
+
+
+/* ===== faxa noticias ===== */
+.tvContainer {
+  width: 90%;
+  max-width: 720px;
+  margin: 60px auto;
+  position: relative;
+  border: 16px solid #222;
+  border-radius: 28px;
+  background: #111;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+
+.tvContainer:hover {
+  transform: scale(1.03);
+}
+
+.tvScreen {
+  position: relative;
+  background: #000;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 0 10px rgba(255,255,255,0.05);
+}
+
+.tvTicker {
+  background: #111;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 2px solid #ff0000;
+}
+
+.tvTicker span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tvScroll 20s linear infinite;
+}
+
+.tvTicker:hover span {
+  animation-play-state: paused;
+}
+
+@keyframes tvScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.tvContent img {
+  width: 100%;
+  display: block;
+  border-radius: 0 0 18px 18px;
+  filter: contrast(1.1) brightness(1.05);
+}
+
+.tvAntenna {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 35px;
+  background: #222;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.tvAntenna::before,
+.tvAntenna::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  width: 6px;
+  height: 35px;
+  background: #222;
+  border-radius: 3px;
+}
+
+.tvAntenna::before {
+  left: -12px;
+  transform: rotate(45deg);
+}
+
+.tvAntenna::after {
+  left: 12px;
+  transform: rotate(-45deg);
+}
+
+/* Botões laterais */
+.tvButtons {
+  position: absolute;
+  top: 40%;
+  right: -28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tvButtons .btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #555;
+  border: 2px solid #333;
+  box-shadow: inset 0 0 2px rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tvButtons .btn:hover {
+  background: #ff3d2f;
+  box-shadow: 0 0 6px rgba(255,61,47,0.8);
+}
+
+/* Luz de power piscando */
+.tvPower {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0f0;
+  box-shadow: 0 0 6px #0f0;
+  animation: powerBlink 1.5s infinite;
+}
+
+@keyframes powerBlink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0.3; }
+}
+
+.tvFooter {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 0 0 18px 18px;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
+}
+
+
+
+
+
+/* Doação */
+.doacao {
+  text-align: center;
+  background: #fdf6f0;
+  padding: 80px 5%;
+}
+.doacaoBox {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.doacaoBox img {
+  width: 130px;
+  border-radius: 10px;
+}
+.doacaoBox a {
+  color: #d98a25;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+
 
 
 /* ===== ANIMAÇÕES ===== */

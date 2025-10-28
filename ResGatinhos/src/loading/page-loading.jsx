@@ -1,230 +1,202 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const Loader = () => {
   return (
     <StyledWrapper>
-      <div aria-label="Cute gray cat running in a metal wheel" role="img" className="wheel-and-cat">
-        <div className="wheel" />
+      <div className="cat-container">
         <div className="cat">
-          <div className="cat__body">
-            <div className="cat__head">
-              <div className="cat__ear cat__ear--left" />
-              <div className="cat__ear cat__ear--right" />
-              <div className="cat__eye" />
-              <div className="cat__nose" />
-            </div>
-            <div className="cat__limb cat__limb--fr" />
-            <div className="cat__limb cat__limb--fl" />
-            <div className="cat__limb cat__limb--br" />
-            <div className="cat__limb cat__limb--bl" />
-            <div className="cat__tail" />
+          <div className="ear ear--left" />
+          <div className="ear ear--right" />
+          <div className="face">
+            <div className="eye eye--left" />
+            <div className="eye eye--right" />
+            <div className="nose" />
+            <div className="whiskers whiskers--left" />
+            <div className="whiskers whiskers--right" />
           </div>
+          <div className="body" />
+          <div className="tail" />
         </div>
-        <div className="spoke" />
+        {/* <div className="yarn" /> */}
       </div>
+
+      <p>Carregando os gatinhos...</p>
     </StyledWrapper>
   );
 };
 
+// ==== ANIMAÇÕES ====
+
+const pawMove = keyframes`
+  0%, 100% { background-position: 0 0; }
+  50% { background-position: 50px 50px; }
+`;
+
+const bounce = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const tailMove = keyframes`
+  0%, 100% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+`;
+
+// ==== ESTILO PRINCIPAL ====
+
 const StyledWrapper = styled.div`
+  height: 100vh;
+  background: #fff9f9c7;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f3e9ff;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  position: relative;
 
-  .wheel-and-cat {
-    --dur: 1s;
-    position: relative;
-    width: 12em;
-    height: 12em;
-    font-size: 14px;
-  }
-
-  .wheel,
-  .cat,
-  .cat div,
-  .spoke {
+  /* Padrão de patinhas no fundo */
+  &::before {
+    content: "";
     position: absolute;
+    inset: 0;
+    background-image: url("https://png.pngtree.com/png-vector/20250606/ourlarge/pngtree-adorable-white-cat-face-illustration-png-image_16478037.png");
+    background-repeat: repeat;
+    background-size: 60px;
+    opacity: 0.05;
+    animation: ${pawMove} 8s linear infinite;
   }
 
-  .wheel,
-  .spoke {
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .wheel {
-    background: radial-gradient(100% 100% at center, hsla(0, 0%, 60%, 0) 47.8%, #aaa 48%);
-    z-index: 2;
+  .cat-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    animation: ${bounce} 1.8s ease-in-out infinite;
   }
 
   .cat {
-    animation: catRun var(--dur) ease-in-out infinite;
-    top: 50%;
-    left: calc(50% - 3.5em);
-    width: 7em;
-    height: 3.75em;
-    transform: rotate(4deg) translate(-0.8em, 1.85em);
-    transform-origin: 50% 0;
-    z-index: 1;
-  }
-
-  .cat__body {
-    animation: catBody var(--dur) ease-in-out infinite;
-    background: #b3b3b3;
-    border-radius: 40% 50% 40% 40%;
-    top: 0.25em;
-    left: 2em;
-    width: 4.5em;
-    height: 3em;
-    transform-origin: 17% 50%;
-  }
-
-  .cat__head {
-    background: #b3b3b3;
-    border-radius: 60% 40% 40% 60%;
-    top: 0.2em;
-    left: -2em;
-    width: 2.6em;
-    height: 2.4em;
-    transform-origin: 100% 50%;
-  }
-
-  .cat__ear {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 0.6em solid transparent;
-    border-right: 0.6em solid transparent;
-    border-bottom: 0.8em solid #b3b3b3;
-    top: -0.6em;
+    bottom: 10px;
+    left: 40px;
+    width: 80px;
+    height: 80px;
   }
 
-  .cat__ear--left {
-    left: 0.2em;
+  .ear {
+    width: 20px;
+    height: 20px;
+    background: #f1c8c8;
+    border-radius: 4px;
+    position: absolute;
+    top: -10px;
+    transform: rotate(45deg);
   }
 
-  .cat__ear--right {
-    right: 0.2em;
+  .ear--left {
+    left: 10px;
+  }
+  .ear--right {
+    right: 10px;
   }
 
-  .cat__eye {
-    background: black;
+  .face {
+    width: 80px;
+    height: 70px;
+    background: #ffdcdc;
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eye {
+    width: 10px;
+    height: 10px;
+    background: #333;
     border-radius: 50%;
-    width: 0.4em;
-    height: 0.4em;
     position: absolute;
-    top: 0.7em;
-    left: 1.4em;
+    top: 28px;
   }
 
-  .cat__nose {
+  .eye--left {
+    left: 20px;
+  }
+
+  .eye--right {
+    right: 20px;
+  }
+
+  .nose {
+    width: 10px;
+    height: 6px;
     background: pink;
-    width: 0.3em;
-    height: 0.2em;
     border-radius: 50%;
     position: absolute;
-    top: 1.3em;
-    left: 0.2em;
+    top: 42px;
+    left: 35px;
   }
 
-  .cat__tail {
-    background: #b3b3b3;
-    border-radius: 50%;
-    top: 1em;
-    right: -1.2em;
-    width: 2.8em;
-    height: 0.4em;
-    transform-origin: 0 50%;
-    animation: catTail var(--dur) linear infinite;
-  }
-
-  .cat__limb {
-    background: #999;
-    border-radius: 0.5em;
-    width: 0.7em;
-    height: 1.5em;
+  .whiskers {
+    width: 25px;
+    height: 2px;
+    background: #555;
     position: absolute;
+    top: 45px;
   }
 
-  .cat__limb--fr {
-    top: 2em;
-    left: 0.8em;
-    animation: limbMove var(--dur) linear infinite;
+  .whiskers--left {
+    left: -20px;
   }
 
-  .cat__limb--fl {
-    top: 2em;
-    left: 1.8em;
-    animation: limbMove var(--dur) linear infinite reverse;
+  .whiskers--right {
+    right: -20px;
   }
 
-  .cat__limb--br {
-    top: 2em;
-    left: 3.2em;
-    animation: limbMove var(--dur) linear infinite;
+  .body {
+    width: 60px;
+    height: 50px;
+    background: #ffdcdc;
+    border-radius: 50% 50% 30% 30%;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
   }
 
-  .cat__limb--bl {
-    top: 2em;
-    left: 4.2em;
-    animation: limbMove var(--dur) linear infinite reverse;
+  .tail {
+    position: absolute;
+    width: 50px;
+    height: 10px;
+    background: #ffdcdc;
+    border-radius: 50px;
+    bottom: 10px;
+    right: -35px;
+    transform-origin: left center;
+    animation: ${tailMove} 1.5s ease-in-out infinite;
   }
 
-  .spoke {
-    animation: spoke var(--dur) linear infinite;
-    background: radial-gradient(100% 100% at center, #aaa 5%, transparent 5%),
-      linear-gradient(transparent 46.9%, #bbb 47% 52.9%, transparent 53%) 50% 50% / 99% 99% no-repeat;
+  .yarn {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #b48efc;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    animation: ${spin} 2s linear infinite;
   }
 
-  @keyframes catRun {
-    from, to {
-      transform: rotate(4deg) translate(-0.8em, 1.85em);
-    }
-    50% {
-      transform: rotate(0) translate(-0.8em, 1.85em);
-    }
-  }
-
-  @keyframes catBody {
-    0%, 50%, 100% {
-      transform: rotate(0);
-    }
-    25%, 75% {
-      transform: rotate(-2deg);
-    }
-  }
-
-  @keyframes catTail {
-    0%, 50%, 100% {
-      transform: rotate(20deg);
-    }
-    25%, 75% {
-      transform: rotate(40deg);
-    }
-  }
-
-  @keyframes limbMove {
-    0%, 50%, 100% {
-      transform: rotate(15deg);
-    }
-    25%, 75% {
-      transform: rotate(-30deg);
-    }
-  }
-
-  @keyframes spoke {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(-1turn);
-    }
+  p {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    color: #b48efc;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(180, 142, 252, 0.3);
   }
 `;
 

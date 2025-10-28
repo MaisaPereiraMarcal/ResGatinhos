@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 function Contato() {
-    // Garante que a página role para o topo ao ser carregada/acessada
+
     useEffect(() => {
         window.scrollTo(0, 0); 
     }, []);
@@ -11,7 +11,7 @@ function Contato() {
             padding: '100px', 
             textAlign: 'center', 
             minHeight: '80vh',
-            backgroundColor: '#e6e6fa', // Cor suave para diferenciar
+            backgroundColor: '#e6e6fa', 
             color: '#333'
         }}>
             <h2>Página Contato (Em Construção)</h2>

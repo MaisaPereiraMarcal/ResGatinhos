@@ -98,25 +98,35 @@ export default function PageHome({ user, setUser, image }) {
      };
 
   // Animações de scroll para outros elementos
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add(styles.visible);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-    const elements = document.querySelectorAll(
-      `.${styles.textoHero}, .${styles.imgHero}, .${styles.quemSomos}, .${styles.cardGato}`
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  // pega todos os elementos de forma segura (sem querySelector)
+  const classes = [
+    styles.textoHero,
+    styles.imgHero,
+    styles.quemSomos,
+    styles.cardGato
+  ];
+
+  classes.forEach((cls) => {
+    const els = document.getElementsByClassName(cls);
+    Array.from(els).forEach((el) => observer.observe(el));
+  });
+
+  return () => observer.disconnect();
+}, []);
+
 
   const gatinhos = [
     { nome: "Luna", imagem: "/gato1.jpg", descricao: "Doce, tranquila e adora um carinho no colo." },
@@ -199,21 +209,26 @@ export default function PageHome({ user, setUser, image }) {
           </div>
         </section>
 
-       {/* ===== INDICADORES ===== */}
+ {/* ===== INDICADORES ===== */}
 <section className={styles.indicadores}>
-  <div className={styles.indicador}>
-    <h3>+200</h3>
-    <p>Gatos adotados</p>
-  </div>
-  <div className={styles.indicador}>
-    <h3>+30</h3>
-    <p>Voluntários ativos</p>
-  </div>
-  <div className={styles.indicador}>
-    <h3>Desde 2019</h3>
-    <p>Transformando vidas</p>
+  <h2 className={styles.tituloIndicadores}>Nossos Números </h2>
+  
+  <div className={styles.indicadoresGrid}>
+    <div className={styles.indicador}>
+      <h3>+200</h3>
+      <p>Gatos adotados</p>
+    </div>
+    <div className={styles.indicador}>
+      <h3>+30</h3>
+      <p>Voluntários ativos</p>
+    </div>
+    <div className={styles.indicador}>
+      <h3>Desde 2019</h3>
+      <p>Transformando vidas</p>
+    </div>
   </div>
 </section>
+
 
 
         {/* ===== VÍDEO ===== */}

@@ -36,7 +36,26 @@ export default function PageHome({ user, setUser, image }) {
   const visibleDepoimentos = depoimentos.slice(start, start + 3);
 
 
+useEffect(() => {
+  const counters = document.querySelectorAll(`.${styles.indicador} h3[data-value]`);
+  counters.forEach(counter => {
+    let start = 0;
+    const end = parseInt(counter.getAttribute("data-value"));
+    const duration = 2000;
+    const increment = end / (duration / 16);
 
+    const updateCounter = () => {
+      start += increment;
+      if (start < end) {
+        counter.textContent = "+" + Math.floor(start);
+        requestAnimationFrame(updateCounter);
+      } else {
+        counter.textContent = "+" + end;
+      }
+    };
+    updateCounter();
+  });
+}, []);
 
 
 
@@ -211,23 +230,29 @@ useEffect(() => {
 
  {/* ===== INDICADORES ===== */}
 <section className={styles.indicadores}>
-  <h2 className={styles.tituloIndicadores}>Nossos Números </h2>
-  
-  <div className={styles.indicadoresGrid}>
-    <div className={styles.indicador}>
-      <h3>+200</h3>
-      <p>Gatos adotados</p>
-    </div>
-    <div className={styles.indicador}>
-      <h3>+30</h3>
-      <p>Voluntários ativos</p>
-    </div>
-    <div className={styles.indicador}>
-      <h3>Desde 2019</h3>
-      <p>Transformando vidas</p>
-    </div>
+  <div className={styles.indicador}>
+    <div className={styles.patinhas}></div>
+    <h3>+200</h3>
+    <p>Gatos adotados</p>
+  </div>
+
+  <div className={styles.indicador}>
+    <div className={styles.patinhas}></div>
+    <h3>+30</h3>
+    <p>Voluntários ativos</p>
+  </div>
+
+  <div className={styles.indicador}>
+    <div className={styles.patinhas}></div>
+    <h3>Desde 2019</h3>
+    <p>Transformando vidas</p>
   </div>
 </section>
+
+
+
+
+
 
 
 

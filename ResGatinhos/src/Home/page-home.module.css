@@ -16,6 +16,98 @@ body, p, a, button {
   animation: slideInLeft 1s ease;
 }
 
+.perfilContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== FOTO DE PERFIL ===== */
+.fotoPerfil {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid #ffb703; /* dourado */
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 183, 3, 0.25);
+}
+
+.fotoPerfil:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 14px rgba(255, 183, 3, 0.4);
+}
+
+/* ===== MENU DROPDOWN ===== */
+.dropdownMenu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background-color: #fff8ed;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(255, 183, 3, 0.25);
+  padding: 14px 18px;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: slideDown 0.3s ease forwards;
+  z-index: 100;
+}
+
+.dropdownMenu p {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* ===== LINKS DO DROPDOWN ===== */
+.dropdownItem {
+  text-decoration: none;
+  color: #5a4a2c;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  border-radius: 8px 8px 0 0; 
+  transition: all 0.25s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #ffe6a7;
+  color: #e29106;
+}
+
+/* ===== BOTÃO SAIR ===== */
+.dropdownSair {
+  background: #eeb029;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 0;
+  border-radius: 8px ;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.dropdownSair:hover {
+  background: #f48c06;
+}
+
+/* ===== ANIMAÇÃO DO DROPDOWN ===== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
 :root {
   --roxo-principal: #6c1a7e;
   --roxo-claro: #c981d1;
@@ -1029,7 +1121,7 @@ body {
 
 /* ===== faxa noticias ===== */
 .tvContainer {
-  width: 90%;
+  width: 40%;
   max-width: 720px;
   margin: 60px auto;
   position: relative;
@@ -1160,6 +1252,32 @@ body {
 @keyframes powerBlink {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0.3; }
+}
+
+/* .tvContent img {
+  width: 100%;
+  display: block;
+  border-radius: 0 0 18px 18px;
+  filter: contrast(1.1) brightness(1.05);
+  transition: opacity 0.5s ease;
+} */
+
+.tvTicker span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: tvScroll 20s linear infinite;
+  transition: opacity 0.4s ease;
+}
+
+/* Efeito de "troca de canal" tipo TV antiga */
+.tvContainer:active .tvScreen {
+  animation: tvSwitch 0.3s ease;
+}
+
+@keyframes tvSwitch {
+  0% { filter: brightness(1); transform: scaleY(1); }
+  50% { filter: brightness(0.2); transform: scaleY(0.1); }
+  100% { filter: brightness(1); transform: scaleY(1); }
 }
 
 .tvFooter {

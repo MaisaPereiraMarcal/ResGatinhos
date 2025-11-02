@@ -6,7 +6,43 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 
-export default function PageHome({ user, setUser, image }) {
+
+export default function PageHome({ user, setUser }) {
+
+
+// Canais
+ const canais = [
+    {
+      nome: "Canal ResGatinhos • Ao vivo",
+      noticia:
+        "🚨 Campanha de adoção neste fim de semana! | 🐾 Castração gratuita disponível | 🧡 Dicas para deixar seu gato mais confiante | 🌎 Como ajudar ONGs locais",
+      imagem: "/gato-irado.jpg",
+    },
+    {
+      nome: "Canal PetNews",
+      noticia:
+        "🐶 Novos abrigos abrem em várias cidades | 🩺 Cuide da saúde do seu pet no inverno | 🐕‍🦺 Cães heróis salvam vidas em enchentes!",
+      imagem: "/cao-feliz.jpg",
+    },
+    {
+      nome: "Canal Natureza Viva",
+      noticia:
+        "🌳 Onças-pintadas voltam a habitar áreas protegidas | 🦜 Projeto Amazônia Verde ganha força | 🌧️ Chuvas trazem vida às florestas!",
+      imagem: "/natureza.jpg",
+    },
+  ];
+
+  const [canalAtual, setCanalAtual] = useState(0);
+
+  const trocarCanal = (direcao) => {
+    setCanalAtual((atual) =>
+      direcao === "proximo"
+        ? (atual + 1) % canais.length
+        : (atual - 1 + canais.length) % canais.length
+    );
+  };
+
+
 
 
 //depoimentos
@@ -174,20 +210,24 @@ useEffect(() => {
           <Link to="/adotar">Adote</Link>
           <Link to="/contato">Contato</Link>
 
-          {user ? (
-            <div className={styles.perfilContainer} ref={dropdownRef}>
-              <img
-                src={user.foto}
-                alt="Perfil"
-                className={styles.fotoPerfil}
-                onClick={() => setShowDropdown(!showDropdown)}
-              />
+
+
+
+         {user ? (
+  <div className={styles.perfilContainer}>
+    <img
+      src={user.foto || "/default-avatar.png"}
+      alt="Perfil"
+      className={styles.fotoPerfil}
+      onClick={() => setShowDropdown(!showDropdown)}
+    />
               {showDropdown && (
                 <div className={styles.dropdownMenu}>
                   <p style={{ color: "#dba511" }}>Bem-vindo, {user.nome}</p>
                   <Link to="/perfil" className={styles.dropdownItem}>Meu Perfil</Link>
                   <Link to="/configuracoes" className={styles.dropdownItem}>Configurações</Link>
-                  <button onClick={() => setUser(null)} className={styles.dropdownSair}>Sair</button>
+                  <button onClick={() => setUser(null)}   className={styles.dropdownSair}>Sair</button>
+                  
                 </div>
               )}
             </div>
@@ -352,36 +392,34 @@ useEffect(() => {
 
 {/* ===== TV ULTRA REALISTA ===== */}
 <div className={styles.tvContainer}>
-  {/* Tela da TV */}
-  <div className={styles.tvScreen}>
-    <div className={styles.tvTicker}>
-      <span>
-        🚨 Campanha de adoção neste fim de semana! | 🚨 Castração gratuita disponível | 🚨 Dicas para deixar seu gato mais confiante | 🚨 Como ajudar ONGs locais
-      </span>
+      {/* Tela da TV */}
+      <div className={styles.tvScreen}>
+        <div className={styles.tvTicker}>
+          <span>{canais[canalAtual].noticia}</span>
+        </div>
+        <div className={styles.tvContent}>
+          <img src={canais[canalAtual].imagem} alt={canais[canalAtual].nome} />
+        </div>
+      </div>
+
+      {/* Botões laterais */}
+      <div className={styles.tvButtons}>
+        <div className={styles.btn} onClick={() => trocarCanal("anterior")}></div>
+        <div className={styles.btn} onClick={() => trocarCanal("proximo")}></div>
+      </div>
+
+      {/* Antena */}
+      <div className={styles.tvAntenna}></div>
+
+      {/* Luz de power */}
+      <div className={styles.tvPower}></div>
+
+      {/* Rodapé */}
+      <div className={styles.tvFooter}>
+        <span>{canais[canalAtual].nome}</span>
+      </div>
     </div>
-    <div className={styles.tvContent}>
-      <img src="/gato-irado.jpg" alt="Gato na TV" />
-    </div>
-  </div>
-
-  {/* Botões laterais */}
-  <div className={styles.tvButtons}>
-    <div className={styles.btn}></div>
-    <div className={styles.btn}></div>
-    <div className={styles.btn}></div>
-  </div>
-
-  {/* Antena */}
-  <div className={styles.tvAntenna}></div>
-
-  {/* Luz de power */}
-  <div className={styles.tvPower}></div>
-
-  {/* Rodapé da TV */}
-  <div className={styles.tvFooter}>
-    <span>Canal ResGatinhos • Ao vivo</span>
-  </div>
-</div>
+  );
 
 
 

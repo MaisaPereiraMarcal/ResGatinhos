@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ComoAjudar.module.css';
 import { Link } from 'react-router-dom';
 
@@ -37,6 +37,15 @@ const helpCards = [
 ];
 
 function ComoAjudar() {
+
+  const playSound = () => {
+    const audio = new Audio('/meow.mp3');
+    audio.currentTime = 0;
+    audio.play().catch(error => {
+      console.warn("Erro ao tentar tocar o áudio.", error);
+    });
+  };
+
   const donationItems = [
     {
       name: "Ração",
@@ -92,7 +101,7 @@ function ComoAjudar() {
           <div className={styles.sectionContent}>
             <div className={styles.itemList}>
               <p className={styles.sectionDescription}>
-                Nossos gatinhos precisam de itens para crescerem fortes e saudáveis.  
+                Nossos gatinhos precisam de itens para crescerem fortes e saudáveis.
                 Sua doação de itens faz uma diferença enorme no dia a dia do abrigo.
               </p>
 
@@ -142,45 +151,40 @@ function ComoAjudar() {
             </div>
           ))}
         </section>
-        <footer className={styles.footer}>
-                <div className={styles.footerContent}>
-                    <div className={styles.footerContact}>
-                        <h3>Contato</h3>
-                        <p>E-mail: contato@resgatinhosblumenau.com.br</p>
-                        <p>Telefone: 47 99999-9999</p>
-                        <div className={styles.socialIcons}>
-                            <a href="https://www.facebook.com/resgatinhosblumenau" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="Facebook" />
-                            </a>
-                            <a href="https://www.instagram.com/resgatinhosblumenau/" target="_blank" rel="noopener noreferrer">
-                                <img src="https://img.icons8.com/?size=100&id=Xy10Jcu1L2Su&format=png&color=000000" alt="Instagram" />
-                            </a>
-                        </div>
-                    </div>
+        <footer className={styles.rodape}>
+          <div className={styles.containerRodape}>
 
-                    <div className={styles.footerPartners}>
-                        <h3>Parcerias</h3>
-                        <p>@fa.blumenau</p>
-                        <p>@petgramnatural</p>
-                        <p>@fangpetstore</p>
-                    </div>
+            <div className={styles.coluna}>
+              <h3>Contato</h3>
+              <p>E-mail: contato@resgatinhosblumenau.com.br</p>
+              <p>(47) 99999-9999</p>
+            </div>
 
-                    <div className={styles.footerCat}>
-                        <p className={styles.catMessage}>
-                            Nós merecemos um lar cheio de amor
-                        </p>
-                        <img
-                            src="/gatinho.png"
-                            alt="Gatinho olhando"
-                            className={styles.catImage}
-                            onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = "/gatinho.png";
-                            }}
-                        />
-                    </div>
-                </div>
-            </footer>
+            <div className={styles.coluna}>
+              <h3>Parcerias</h3>
+              <ul>
+                <li>@fa.blumenau</li>
+                <li>@petgramnatural</li>
+                <li>@fangpetstore</li>
+              </ul>
+            </div>
+
+            <div className={styles.colunaFinal}>
+              <p className={styles.catMessage}>
+                "Amor se adota. Cada lar transforma uma vida."
+              </p>
+              <img
+                src="/gatinho.png"
+                alt="Gatinho fofo"
+                onClick={playSound}
+                className={styles.gato}
+              />
+            </div>
+          </div>
+          <p className={styles.copy}>
+            © 2025 ResGatinhos – Todos os direitos reservados
+          </p>
+        </footer>
       </div>
     </div>
   );

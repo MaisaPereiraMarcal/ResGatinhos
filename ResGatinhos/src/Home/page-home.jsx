@@ -273,7 +273,7 @@ useEffect(() => {
               {showDropdown && (
                 <div className={styles.dropdownMenu}>
                   <p style={{ color: "#dba511" }}>Bem-vindo, {user.nome}</p>
-                  <Link to="/perfil" className={styles.dropdownItem}>Meu Perfil</Link>
+                  <Link to="/Conta" className={styles.dropdownItem}>Meu Perfil</Link>
                   <Link to="/configuracoes" className={styles.dropdownItem}>Configurações</Link>
                   <button onClick={() => setUser(null)}   className={styles.dropdownSair}>Sair</button>
                   
@@ -472,7 +472,7 @@ useEffect(() => {
 
 {/* ===== MISSÃO / VISÃO / VALORES ===== */}
 <section className={styles.mvvSection}>
-  <h2>Nosso Propósito</h2>
+  <h2 > Nosso Propósito</h2>
   <div className={styles.mvvCards}>
     <div className={styles.mvvCard}>
       <img src="/icon-pata.png" alt="Missão" />

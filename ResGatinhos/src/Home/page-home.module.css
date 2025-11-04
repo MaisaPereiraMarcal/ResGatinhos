@@ -824,9 +824,11 @@ body {
   background: #f7f7f7;
 }
 .mvvSection h2 {
-  font-size: 2rem;
-  color: #ffffff;
+  font-size: 4rem;
+  color: #d682e9b2;
   margin-bottom: 40px;
+  animation: slideInLeft 1s ease;
+  text-align: center;
 }
 .mvvCard_p {
   color: #fff;

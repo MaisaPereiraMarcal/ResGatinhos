@@ -10,7 +10,7 @@
   --color-text-dark: #f3f3f3;
   --color-error: #e63946;
   --color-success: #2a9d8f;
-  --color-glass-bg-light: rgba(255, 255, 255, 0.85);
+  --color-glass-bg-light: #ffffffd9;
   --color-glass-bg-dark: rgba(30, 30, 60, 0.9);
   --transition-time: 0.3s;
 }

@@ -1,16 +1,50 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 .paginaContato {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: "Averia Gruesa Libre", sans-serif;
-  background-color: #fff9f9;
+ font-family: 'Poppins', sans-serif;
+ background: radial-gradient(circle at 20% 20%, #ffdb6326 0%, transparent 70%),
+              radial-gradient(circle at 80% 80%, #ffe18f26 0%, transparent 70%);
   color: #333;
+}
+.paginaContato::before {
+ content: "";
+  position: fixed; /* 👈 fixo no fundo, não atrapalha o scroll */
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(circle at 20% 20%, #e563ff26 0%, transparent 70%),
+              radial-gradient(circle at 80% 80%, #ffe18f26 0%, transparent 70%);
+  animation: floatBg 20s linear infinite alternate;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .topo {
   text-align: center;
   margin-top: 1rem;
-  color: #ff758f;
+  color: #cf60e7bb;
+}
+.topo h1 {
+   font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #cf60e7bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+.topo p {
+  font-size: 1.1rem;
+  color: #fcc307;
+  margin-bottom: 28px;
+  font-weight: 500;
 }
 
 .container {
@@ -21,40 +55,56 @@
   padding: 2rem;
   align-items: center;
 }
+.container h2 {
+     font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #cf60e7bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+}
 
 .card {
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 20px;
   padding: 2rem;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 99, 146, 0.25),
+              inset 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-h2 {
-  text-align: center;
-  color: #ff758f;
-  margin-bottom: 1rem;
-}
+
 
 label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
 }
 
 input, textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text-light);
+  box-shadow: inset 0 1px 6px rgba(255, 255, 255, 0.8),
+              0 3px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  resize: none;
 }
 
 input:focus, textarea:focus {
-  border-color: #ff758f;
   outline: none;
-  box-shadow: 0 0 5px rgba(255,117,143,0.3);
+  border-color: #e2b932;
+  box-shadow: 0 0 10px #ffaf0266;
+  background: #fff;
 }
 
 textarea {
@@ -74,22 +124,34 @@ textarea {
 }
 
 button {
-  flex: 1;
-  padding: 0.9rem;
-  background-color: #ff758f;
-  color: white;
-  border: none;
-  border-radius: 10px;
+   margin-top: 12px;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 16px;
+  border: 2px solid #fdba1d;
+  background: transparent;
+  color: #000000;;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #ff4d6d;
+ background-color: #fdba1dc2;
+  color: white;
 }
 
 .botaoReset {
-  background-color: #a58797;
-  color: #333;
+  margin-top: 12px;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 16px;
+  border: 2px solid #fdba1d;
+  background: #fdba1d;
+  color: #000000;;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .faqItem {
@@ -99,7 +161,7 @@ button:hover {
 .rodape {
   text-align: center;
   padding: 1rem;
-  background-color: #ffe5ec;
+  background-color: transparent;
   color: #333;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -117,7 +179,7 @@ button:hover {
   cursor: pointer;
   padding: 0.5rem 0;
   font-weight: bold;
-  color: #ff758f;
+  color: #ab53fd;
 }
 
 .accordionContent {
@@ -127,7 +189,7 @@ button:hover {
 }
 
 .botaoWhats {
-  background-color: #25d366;
+  background-color: #fcb527ce;
   color: white;
   border: none;
   padding: 0.8rem 1.2rem;
@@ -142,30 +204,31 @@ button:hover {
 }
 
 .botaoWhats:hover {
-  background-color: #1ebe5d;
+  background-color:#fcb527;
 }
 
 .voltarBtn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff4d6d;
+  top: calc(20px + env(safe-area-inset-top));
+  right: calc(20px + env(safe-area-inset-right));
+  background-color: #FDB81D;
   color: #fff;
   border: none;
-  width: 3em;
-  height: 3em;
+  width: 3.2rem;
+  height: 3.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5em;
+  font-size: 1.2rem;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: 0.3s ease;
+  z-index: 9999; /* garante que fique acima de tudo */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 0;
 }
 
 .voltarBtn:hover {
-  background-color: #e63950;
+  background-color: #fdba1db2;
   transform: scale(1.1);
 }

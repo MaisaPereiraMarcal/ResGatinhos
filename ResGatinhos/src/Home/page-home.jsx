@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import styles from "./page-home.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,14 +6,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
 import Particles from "react-tsparticles";
-import { loadSlim } from "@tsparticles/slim";
-import { useCallback } from "react";
+import { loadSlim } from "tsparticles-slim";
+
 
 export default function PageHome({ user, setUser }) {
 
-const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine); 
-  }, []);
+ const particlesInit = useCallback(async (engine) => {
+  await loadSlim(engine);
+}, []);
+
 
 // Canais
  const canais = [
@@ -346,6 +347,7 @@ useEffect(() => {
 
         {/* ===== VÍDEO ===== */}
         <section ref={sectionRef} className={styles.videoSecao}>
+          
           <h2 className={styles.h2_subtl}>Assista nossa história</h2>
           <div className={styles.videoCard}>
             <video
@@ -364,44 +366,73 @@ useEffect(() => {
 
       {/* ===== MAPA FUTURISTA ===== */}
  <section className={styles.mapaFuturista}>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        className={styles.particles}
-        options={{
-          fullScreen: { enable: false },
-          background: { color: "transparent" },
-          particles: {
-            number: { value: 60 },
-            shape: { type: "circle" },
-            opacity: { value: 0.5 },
-            size: { value: { min: 1, max: 3 } },
-            move: {
-              enable: true,
-              speed: 1,
-              direction: "none",
-              outModes: "bounce",
-            },
-            links: {
-              enable: true,
-              color: "#9c6bff",
-              distance: 150,
-              opacity: 0.3,
-              width: 1,
-            },
+     <Particles
+  id="tsparticles"
+  init={particlesInit}
+  className={styles.particles}
+  options={{
+    fullScreen: { enable: false },
+    background: { color: "transparent" },
+    fpsLimit: 60,
+    particles: {
+      number: { value: 35 },
+      shape: {
+        type: "image",
+        image: [
+          {
+            src: "https://static.vecteezy.com/system/resources/thumbnails/009/303/117/small/cat-paw-clipart-design-illustration-free-png.png", // patinha
+            width: 32,
+            height: 32,
           },
-          interactivity: {
-            events: {
-              onHover: { enable: true, mode: "repulse" },
-              onClick: { enable: true, mode: "push" },
-            },
-            modes: {
-              repulse: { distance: 100 },
-              push: { quantity: 4 },
-            },
+          {
+            src: "https://png.pngtree.com/png-clipart/20250607/original/pngtree-adorable-white-cat-face-illustration-png-image_21135343.png", 
+            width: 32,
+            height: 32,
           },
-        }}
-      />
+          {
+            src: "https://images.vexels.com/media/users/3/182540/isolated/preview/4e4dea1edbd0bb51b2fabf78f4b63b7e-curso-de-gato-bonito-jogando-gatinho.png", 
+            width: 32,
+            height: 32,
+          },
+          {
+            src: "https://cdn-icons-png.flaticon.com/512/833/833472.png", // coração
+            width: 28,
+            height: 28,
+          },
+        ],
+      },
+      color: { value: ["#ffb6c1", "#a3cfff", "#fff7b0", "#d4a5ff"] },
+      opacity: { value: 0.9 },
+      size: { value: { min: 18, max: 28 } },
+      move: {
+        enable: true,
+        speed: 1.2,
+        direction: "none",
+        outModes: { default: "out" },
+        random: true,
+        straight: false,
+      },
+      rotate: {
+        value: { min: 0, max: 360 },
+        direction: "random",
+        animation: { enable: true, speed: 2 },
+      },
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "bubble" },
+        onClick: { enable: true, mode: "repulse" },
+      },
+      modes: {
+        bubble: { distance: 120, size: 40, duration: 1, opacity: 0.8 },
+        repulse: { distance: 150, duration: 0.4 },
+      },
+    },
+    detectRetina: true,
+  }}
+/>
+
+
 
       <motion.div
         className={styles.mapaGlass}
@@ -415,7 +446,7 @@ useEffect(() => {
       >
         <h2 className={styles.titulo}>Onde Estamos?</h2>
         <p className={styles.descricao}>
-          Explore nossa localização no espaço digital — com profundidade e energia futurista. 
+          Explore nossa localização no espaço digital — com profundidade e energia futurista.
         </p>
 
         <motion.div
@@ -703,41 +734,100 @@ useEffect(() => {
 
 
 
-      {/* ===== FOOTER ===== */}
-      <footer className={styles.rodape}>
-        <div className={styles.containerRodape}>
-          <div className={styles.coluna}>
-            <h3>Contato</h3>
-            <p>contato@resgatinhos.com.br</p>
-            <p>(47) 99909-9909</p>
-          </div>
+     {/* ===== FOOTER ===== */}
+<footer className={styles.rodape}>
+  <div className={styles.containerRodape}>
+    {/* Coluna 1 — Sobre
+    <div className={styles.coluna}>
+      <h3>Sobre o ResGatinhos</h3>
+      <p>
+        Somos uma ONG dedicada a resgatar, cuidar e encontrar lares amorosos para gatinhos
+        abandonados. Acreditamos que cada adoção é um novo começo cheio de amor e esperança.
+      </p>
+    </div> */}
 
-          <div className={styles.coluna}>
-            <h3>Parcerias</h3>
-            <ul>
-              <li>@bia.blumenau</li>
-              <li>@petamigomeu</li>
-              <li>@larfelizgatos</li>
-            </ul>
-          </div>
+    {/* Coluna 2 — Contato */}
+    <div className={styles.coluna}>
+      <h3>Contato</h3>
+      <p> contato@resgatinhosblumenau.com.br</p>
+      <p> (47) 99909-9909</p>
+      <p> Rodeio, SC — Brasil</p>
+    </div>
 
-          <div className={styles.colunaFinal}>
-            <p className={styles.frase}>“Amor se adota. Cada lar transforma uma vida.”</p>
-            <img
-              src="/gato-rodape.png"
-              alt="Gatinho rodapé"
-              onClick={playSound}
-              className={styles.gato}
-            />
-            <audio id="meow-som">
-              <source src="/meow.mp3" type="audio/mpeg" />
-            </audio>
-          </div>
-        </div>
-        <div className={styles.copy}>
-          <p>© 2025 ResGatinhos — Todos os direitos reservados</p>
-        </div>
-      </footer>
+    {/* Coluna 3 — Links úteis */}
+    <div className={styles.coluna}>
+      <h3>Links úteis</h3>
+      <ul>
+        <li><a href="/quero-adotar">Quero Adotar</a></li>
+        <li><a href="/doacoes">Doe Agora</a></li>
+        <li><a href="/voluntarios">Seja Voluntário</a></li>
+        <li><a href="/eventos">Eventos</a></li>
+      </ul>
+    </div>
+
+    {/* Coluna 4 — Newsletter */}
+    <div className={styles.colunaNewsletter}>
+      <h3>Fique por dentro </h3>
+      <p>Receba novidades sobre adoções, eventos e dicas para cuidar do seu pet:</p>
+      <form
+  className={styles.formNewsletter}
+  action="https://formspree.io/f/xblpvqnj" 
+  method="POST"
+>
+  <input
+    type="email"
+    name="email"
+    placeholder="Digite seu e-mail"
+    required
+  />
+  <button type="submit">Assinar</button>
+</form>
+
+    </div>
+  </div>
+
+  {/* Frase + Gato */}
+  <div className={styles.fraseArea}>
+    <p className={styles.frase}>“Amor se adota. Cada lar transforma uma vida.”</p>
+    <img
+      src="/gato-rodape.png"
+      alt="Gatinho rodapé"
+      onClick={playSound}
+      className={styles.gato}
+    />
+    <audio id="meow-som">
+      <source src="/meow.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  {/* Redes sociais */}
+  <div className={styles.socialSection}>
+    <h3 className={styles.socialTitle}>
+      <span className={styles.paws}>Siga-nos</span>
+      <span className={styles.paws}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg></span>
+    </h3>
+    <div className={styles.socialIcons}>
+      <a href="https://instagram.com/resgatinhos" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-instagram"></i>
+      </a>
+      <a href="https://facebook.com/resgatinhos" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://tiktok.com/@resgatinhos" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-tiktok"></i>
+      </a>
+      <a href="https://youtube.com/@resgatinhos" target="_blank" rel="noopener noreferrer">
+        <i className="fab fa-youtube"></i>
+      </a>
+    </div>
+  </div>
+
+  {/* Direitos */}
+  <div className={styles.copy}>
+    <p>© 2025 <strong>ResGatinhos</strong> — Todos os direitos reservados </p>
+  </div>
+</footer>
+
     </div>
   );
 }

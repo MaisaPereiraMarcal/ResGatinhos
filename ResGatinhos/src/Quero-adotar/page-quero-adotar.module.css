@@ -1,7 +1,7 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Averia+Gruesa+Libre&family=Bebas+Neue&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -26,7 +26,7 @@ body, html {
 
 
 .topo {
-  font-family: "Bebas Neue", sans-serif;
+  
   font-weight: 400;
   font-style: normal;
   font-size: 24px;
@@ -34,6 +34,26 @@ body, html {
   margin-top: 1em;
   color: #ff758f;
   
+}
+.topo h1
+{
+   font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #cf60e7bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.topo p
+{
+   font-size: 1.1rem;
+  color: #ffb404;
+  margin-bottom: 28px;
+  font-weight: 500;
 }
 
 
@@ -44,21 +64,23 @@ body, html {
   align-items: center;
   padding: 2rem;
 }
+
 .infoGatoSelecionado {
   background-color: #ffe5ec;
   border-radius: 10px;
   padding: 0.8rem;
   text-align: center;
   font-weight: bold;
-  color: #ff4d6d;
+  color: #ffb404;
   margin-bottom: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: 'Poppins', sans-serif;
 }
 
 
 
 .card {
-  background-color: white;
+  background-color: transparent;
   padding: 2rem;
   border-radius: 20px;
   width: 100%;
@@ -72,33 +94,45 @@ body, html {
 }
 
 .formulario h2 {
-  font-family: "Averia Gruesa Libre", system-ui;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #ff758f;
+    font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #cf60e7bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
 
 label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-  color: #444;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color:#333;
 }
 
 input, textarea, select {
+    padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text-light);
+  box-shadow: inset 0 1px 6px rgba(255, 255, 255, 0.8),
+              0 3px 8px rgba(0, 0, 0, 0.05);
   width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: 0.3s;
+  resize: none;
+  margin: 8px 0 16px 0;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #ff758f;
   outline: none;
-  box-shadow: 0 0 5px rgba(255,117,143,0.3);
+  border-color: #e2b932;
+  box-shadow: 0 0 10px #ffaf0266;
+  background: #fff;
 }
 
 textarea {
@@ -122,30 +156,45 @@ textarea {
 }
 
 button {
-  width: 100%;
-  padding: 0.9rem;
-  background-color: #ff758f;
+   width: 50%;
+  padding: 14px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: white;
+   background-color: #FDB81D;
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
+  border-radius: 18px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 5px 18px #fdba1dc2;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #ff4d6d;
-  transform: translateY(-2px);
+  background-color: #fdba1dc2;
+  transform: scale(1.05);
 }
 
 .botaoReset {
-  background-color: #a58797;
-  color: #333;
+  
+   margin-top: 12px;
+  width:100%;
+  padding: 12px 0;
+  border-radius: 16px;
+  border: 2px solid #fdba1d;
+  background: transparent;
+  color: #000000;;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .botaoReset:hover {
-  background-color: #aaa;
-  transform: translateY(-2px);
+  background-color: #fdba1dc2;
+  color: white;
 }
 
 
@@ -161,25 +210,26 @@ button:hover {
 
 .voltarBtn {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff4d6d;
+  top: calc(20px + env(safe-area-inset-top));
+  right: calc(20px + env(safe-area-inset-right));
+  background-color: #FDB81D;
   color: #fff;
   border: none;
-  width: 3em;
-  height: 3em;
+  width: 3.2rem;
+  height: 3.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5em;
+  font-size: 1.2rem;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: 0.3s ease;
+  z-index: 9999; /* garante que fique acima de tudo */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 0;
 }
 
 .voltarBtn:hover {
-  background-color: #e63950;
+  background-color: #fdba1db2;
   transform: scale(1.1);
 }

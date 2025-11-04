@@ -216,7 +216,7 @@ textarea:focus {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 5px 18px var(--color-primary-light);
+  box-shadow: 0 5px 18px #fdba1dc2;
   transition: background 0.3s ease, transform 0.2s ease;
 }
 

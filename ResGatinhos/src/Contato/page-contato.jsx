@@ -66,7 +66,7 @@ const mensagem = encodeURIComponent(
     <div className={styles.paginaContato}>
       <header className={styles.topo}>
         <h1>Contato</h1>
-        <p>Estamos aqui para te ouvir! Entre em contato ou veja nossas perguntas frequentes.</p>
+        <p> <strong>Estamos aqui para te ouvir!</strong> <br /> Entre em contato ou veja nossas perguntas frequentes.</p>
       </header>
 
       <main className={styles.container}>

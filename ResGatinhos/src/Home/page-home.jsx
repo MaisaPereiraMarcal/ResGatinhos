@@ -5,32 +5,80 @@ import { Link, useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
-
+import Particles from "react-tsparticles";
+import { loadSlim } from "@tsparticles/slim";
+import { useCallback } from "react";
 
 export default function PageHome({ user, setUser }) {
 
+const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine); 
+  }, []);
 
 // Canais
  const canais = [
-    {
-      nome: "Canal ResGatinhos • Ao vivo",
-      noticia:
-        "🚨 Campanha de adoção neste fim de semana! | 🐾 Castração gratuita disponível | 🧡 Dicas para deixar seu gato mais confiante | 🌎 Como ajudar ONGs locais",
-      imagem: "/gato-irado.jpg",
-    },
-    {
-      nome: "Canal PetNews",
-      noticia:
-        "🐶 Novos abrigos abrem em várias cidades | 🩺 Cuide da saúde do seu pet no inverno | 🐕‍🦺 Cães heróis salvam vidas em enchentes!",
-      imagem: "/cao-feliz.jpg",
-    },
-    {
-      nome: "Canal Natureza Viva",
-      noticia:
-        "🌳 Onças-pintadas voltam a habitar áreas protegidas | 🦜 Projeto Amazônia Verde ganha força | 🌧️ Chuvas trazem vida às florestas!",
-      imagem: "/natureza.jpg",
-    },
-  ];
+  {
+    nome: "Canal ResGatinhos • Ao vivo",
+    noticia:
+      "🚨 Campanha de adoção neste fim de semana! | 🚨 Castração gratuita disponível | 🚨 Dicas para deixar seu gato mais confiante | 🚨 Como ajudar ONGs locais",
+    imagem: "/gato-irado.jpg",
+  },
+  {
+    nome: "Canal 805",
+    noticia:
+      "🚨 Novos abrigos abrem em várias cidades | 🚨 Cuide da saúde do seu pet no inverno | 🚨 Cães heróis salvam vidas em enchentes!",
+    imagem: "/cao-feliz.jpg",
+  },
+  {
+    nome: "Canal Natureza Viva",
+    noticia:
+      "🌿 Onças-pintadas voltam a habitar áreas protegidas | 🌦️ Projeto Amazônia Verde ganha força | 🌱 Chuvas trazem vida às florestas!",
+    imagem: "/natureza.mp4",
+  },
+  {
+    nome: "Canal 32 News",
+    noticia:
+      "📰 Últimas notícias: aumento nas adoções! | 💡 Campanha de microchipagem gratuita | ❤️ Histórias de resgates emocionantes",
+    imagem: "/noticias.mp4",
+  },
+  {
+    nome: "Catflix",
+    noticia:
+      "🐾 Maratona de vídeos de gatos fofos | 😹 Compilações engraçadas o dia todo | 🎬 Exclusivo: bastidores do ResGatinhos!",
+    imagem: "/catflix.mp4",
+  },
+  {
+    nome: "DogTime",
+    noticia:
+      " Treinos divertidos com seu gato | 🎾 gatos atletas competem em agility | 🚀 Dicas para energia e saúde felina",
+    imagem: "/dog-praia.jpg",
+  },
+  {
+    nome: "Canal Clima Animal",
+    noticia:
+      "☀️ Previsão do tempo: sol com chances de lambidas! | 🌧️ Cuidados com pets na chuva | ❄️ Mantendo o aquecimento dos bichanos no frio",
+    imagem: "/clima.mp4",
+  },
+  {
+    nome: "TV Aventura",
+    noticia:
+      "🏕️ Explorando a natureza com pets | 🚴 Trilhas e aventuras | 🌍 Cuide do planeta com o ResGatinhos!",
+    imagem: "/aventura.mp4",
+  },
+  {
+    nome: "Canal Relax",
+    noticia:
+      "🎵 Sons relaxantes para pets dormirem tranquilos | 🌙 Sessão ‘Dorminhoco Feliz’ começa agora | 😺 Gatos zen ",
+    imagem: "/relax.mp4",
+  },
+  {
+    nome: "Canal Vintage Pets",
+    noticia:
+      "📺 Recordar é viver: os resgates mais antigos | 🎞️ Memórias do abrigo em 2010 | ❤️ Homenagem aos primeiros voluntários",
+    imagem: "/vintage.jpg",
+  },
+];
+
 
   const [canalAtual, setCanalAtual] = useState(0);
 
@@ -298,7 +346,7 @@ useEffect(() => {
 
         {/* ===== VÍDEO ===== */}
         <section ref={sectionRef} className={styles.videoSecao}>
-          <h2>Assista nossa história</h2>
+          <h2 className={styles.h2_subtl}>Assista nossa história</h2>
           <div className={styles.videoCard}>
             <video
               ref={videoRef}
@@ -314,16 +362,81 @@ useEffect(() => {
           </div>
         </section>
 
-        {/* ===== MAPA ===== */}
-        <section className={styles.mapa}>
-          <h2>Onde estamos</h2>
+      {/* ===== MAPA FUTURISTA ===== */}
+ <section className={styles.mapaFuturista}>
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        className={styles.particles}
+        options={{
+          fullScreen: { enable: false },
+          background: { color: "transparent" },
+          particles: {
+            number: { value: 60 },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              outModes: "bounce",
+            },
+            links: {
+              enable: true,
+              color: "#9c6bff",
+              distance: 150,
+              opacity: 0.3,
+              width: 1,
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              onClick: { enable: true, mode: "push" },
+            },
+            modes: {
+              repulse: { distance: 100 },
+              push: { quantity: 4 },
+            },
+          },
+        }}
+      />
+
+      <motion.div
+        className={styles.mapaGlass}
+        whileHover={{
+          rotateY: 12,
+          rotateX: -6,
+          scale: 1.08,
+          z: 40,
+        }}
+        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+      >
+        <h2 className={styles.titulo}>Onde Estamos?</h2>
+        <p className={styles.descricao}>
+          Explore nossa localização no espaço digital — com profundidade e energia futurista. 
+        </p>
+
+        <motion.div
+          className={styles.mapaFrame}
+          whileHover={{
+            rotateY: -6,
+            rotateX: 4,
+            scale: 1.05,
+          }}
+          transition={{ duration: 0.6 }}
+        >
           <iframe
             title="Mapa do Abrigo"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.2020564696854!2d-49.0902536!3d-26.8016942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dee114d4bde35b%3A0xf835e4209ea4be1b!2sCEPREAD%20Centro%20de%20Preven%C3%A7%C3%A3o%20e%20Recupera%C3%A7%C3%A3o%20de%20Animais%20Dom%C3%A9sticos!5e0!3m2!1spt-BR!2sbr!4v1761064306882!5m2!1spt-BR!2sbr"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3561.2020564696854!2d-49.0902536!3d-26.8016942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dee114d4bde35b%3A0xf835e4209ea4be1b!2sCEPREAD!5e0!3m2!1spt-BR!2sbr!4v1761064306882!5m2!1spt-BR!2sbr"
             allowFullScreen
             loading="lazy"
           ></iframe>
-        </section>
+        </motion.div>
+      </motion.div>
+    </section>
+  
 
 
 {/* ===== MISSÃO / VISÃO / VALORES ===== */}
@@ -333,17 +446,17 @@ useEffect(() => {
     <div className={styles.mvvCard}>
       <img src="/icon-pata.png" alt="Missão" />
       <h3>Missão</h3>
-      <p>Resgatar, cuidar e encontrar lares cheios de amor para gatos em situação de abandono.</p>
+      <p className={styles.mvvCard_p}>Resgatar, cuidar e encontrar lares cheios de amor para gatos em situação de abandono.</p>
     </div>
     <div className={styles.mvvCard}>
       <img src="/icon-coracao.png" alt="Visão" />
       <h3>Visão</h3>
-      <p>Um mundo onde cada gato tenha um lar seguro, amoroso e respeitoso.</p>
+      <p className={styles.mvvCard_p}>Um mundo onde cada gato tenha um lar seguro, amoroso e respeitoso.</p>
     </div>
     <div className={styles.mvvCard}>
       <img src="/icon-amor.png" alt="Valores" />
       <h3>Valores</h3>
-      <p>Empatia, responsabilidade e transparência em cada resgate e adoção.</p>
+      <p className={styles.mvvCard_p}>Empatia, responsabilidade e transparência em cada resgate e adoção.</p>
     </div>
   </div>
 </section>
@@ -368,6 +481,7 @@ useEffect(() => {
              </section> 
 
              {/* ===== GATINHOS ===== */}
+             <h2 className={styles.h2_subtl}>Conheça alguns de nossos gatinhos</h2>
         <div className={styles.gridGatos}>
           {gatinhos.map((gato, i) => (
             <div key={i} className={styles.cardGato}>
@@ -392,34 +506,50 @@ useEffect(() => {
 
 {/* ===== TV ULTRA REALISTA ===== */}
 <div className={styles.tvContainer}>
-      {/* Tela da TV */}
-      <div className={styles.tvScreen}>
-        <div className={styles.tvTicker}>
-          <span>{canais[canalAtual].noticia}</span>
-        </div>
-        <div className={styles.tvContent}>
-          <img src={canais[canalAtual].imagem} alt={canais[canalAtual].nome} />
-        </div>
-      </div>
-
-      {/* Botões laterais */}
-      <div className={styles.tvButtons}>
-        <div className={styles.btn} onClick={() => trocarCanal("anterior")}></div>
-        <div className={styles.btn} onClick={() => trocarCanal("proximo")}></div>
-      </div>
-
-      {/* Antena */}
-      <div className={styles.tvAntenna}></div>
-
-      {/* Luz de power */}
-      <div className={styles.tvPower}></div>
-
-      {/* Rodapé */}
-      <div className={styles.tvFooter}>
-        <span>{canais[canalAtual].nome}</span>
-      </div>
+  {/* Tela da TV */}
+  <div className={styles.tvScreen}>
+    <div className={styles.tvTicker}>
+      <span>{canais[canalAtual].noticia}</span>
     </div>
-  );
+    <div className={styles.tvContent}>
+      {canais[canalAtual].imagem.endsWith(".mp4") ? (
+        <video
+          src={canais[canalAtual].imagem}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.tvVideo}
+        />
+      ) : (
+        <img
+          src={canais[canalAtual].imagem}
+          alt={canais[canalAtual].nome}
+          className={styles.tvImage}
+        />
+      )}
+    </div>
+  </div>
+
+  {/* Botões laterais */}
+  <div className={styles.tvButtons}>
+    <div className={styles.btn} onClick={() => trocarCanal("anterior")}></div>
+    <div className={styles.btn} onClick={() => trocarCanal("proximo")}></div>
+  </div>
+
+  {/* Antena */}
+  <div className={styles.tvAntenna}></div>
+
+  {/* Luz de power */}
+  <div className={styles.tvPower}></div>
+
+  {/* Rodapé */}
+  <div className={styles.tvFooter}>
+    <span>{canais[canalAtual].nome}</span>
+  </div>
+</div>
+
+  
 
 
 

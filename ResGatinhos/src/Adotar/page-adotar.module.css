@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+* {
+  font-family: "Poppins", system-ui, sans-serif;
+}
 
 :root {
   --roxo-principal: #6C1A7E;
@@ -29,10 +33,15 @@
   --card-radius: 12px;
   --glass: rgba(255,255,255,0.6);
   --max-width: 1200px;
-  --h1:var(--rosa);
+  
   --btn-voltar: var(--voltar);
   --macho: var(--macho);
   --femea: var(--femea);
+  
+  
+  
+
+
 }
 
 
@@ -49,17 +58,9 @@
 }
 
 
-.paginaAdotar {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--bege-claro);
-  color: var(--text);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.35;
-}
+
+
+
 
 
 
@@ -80,23 +81,32 @@
 }
 
 
-.topo h1 {
-  margin: 1em 0 0;
+
+.topo h1
+{
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
   text-align: center;
-  font-family: "Bebas Neue", sans-serif;
+  margin-top: 1em;
+  color: #ff758f;
+   font-size: 3rem;
   font-weight: 700;
-  font-size: 2.2rem;
-  letter-spacing: 0.5px;
-  color: var(--h1);
-  -webkit-text-stroke: 0.5px var(--h1);
-  text-shadow: 0.5px 0.5px 0 var(--h1);
+  margin-bottom: 6px;
+  color: #cf60e7bb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.topo p {
-  margin: 0.2rem 0 0;
-  color: var(--h1);
-  font-size: 0.92rem;
-  font-size: 15px;
+.topo p
+{
+   font-size: 1.1rem;
+  color: #ffb404;
+  margin-bottom: 28px;
+  font-weight: 500;
 }
 
 
@@ -129,7 +139,7 @@
 .inputBusca {
   border: none;
   outline: none;
-  width: 220px;
+  width: 15em;
   padding: 0.45rem 0.3rem;
   font-size: 0.95rem;
   background: transparent;
@@ -503,4 +513,196 @@
   .gridGatos { grid-template-columns: 1fr; gap: 0.7rem; }
   .inputBusca { width: 120px; }
   .rodapeInner { flex-direction: column; gap: 0.45rem; align-items: center; }
+}
+/* ==========================================
+   ESTILO GLOBAL PARA INPUTS, SELECTS, TEXTAREAS
+========================================== */
+
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  background-color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: 
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.18s ease;
+}
+
+/* Foco */
+/* Animações de foco que NÃO valem para .inputBusca */
+input:not(.inputBusca):focus,
+select:not(.inputBusca):focus,
+textarea:not(.inputBusca):focus {
+   border-color: #ffb700;
+  transform: scale(1.04);
+  box-shadow: 0 0 10px #ffcc4d,
+              0 0 20px rgba(255, 183, 0, 0.45);
+  outline: none;
+  animation: glow 0.8s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 6px #ffd680,
+                0 0 14px rgba(255, 183, 0, 0.35);
+  }
+  to {
+    box-shadow: 0 0 12px #ffefa2,
+                0 0 26px rgba(255, 183, 0, 0.55);
+  }
+}
+
+
+/* Hover */
+input:hover, select:hover, textarea:hover {
+  transform: scale(1.02);
+  border-color: #ffd66c;
+}
+
+/* ==========================================
+   BOTÕES - ESTILO BASE
+========================================== */
+
+button,
+.botaoAdotar,
+.btnFiltro,
+.voltarBtn {
+  padding: 14px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: 
+    background 0.3s ease,
+    transform 0.18s ease,
+    box-shadow 0.3s ease;
+}
+
+.btnClear {
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 
+    background 0.3s ease,
+    transform 0.18s ease,
+    box-shadow 0.3s ease;
+}
+
+.btnApply
+{
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 
+    background 0.3s ease,
+    transform 0.18s ease,
+    box-shadow 0.3s ease;
+}
+
+/* HOVER GENÉRICO */
+button:hover,
+.botaoAdotar:hover,
+.btnFiltro:hover,
+.btnApply:hover,
+.btnClear:hover,
+.voltarBtn:hover {
+  transform: scale(1.06);
+}
+
+/* ==========================================
+   ADOTAR (AMARELO)
+========================================== */
+.botaoAdotar {
+  background-color: var(--botao);
+  color: white;
+  box-shadow: 0 5px 18px rgba(253, 184, 29, 0.7);
+}
+.botaoAdotar:hover {
+  background-color: #ffc64e;
+  box-shadow: 0 6px 20px rgba(255, 200, 50, 0.85);
+}
+
+/* ==========================================
+   FILTRAR (COR #dc88eb)
+========================================== */
+.btnFiltro {
+  background-color: #dc88eb;
+  color: white;
+  box-shadow: 0 5px 18px rgba(220, 136, 235, 0.4);
+}
+.btnFiltro:hover {
+  background-color: #c86bdf;
+  box-shadow: 0 6px 20px rgba(220, 136, 235, 0.7);
+}
+
+/* ==========================================
+   APLICAR (ROXO CLARO)
+========================================== */
+.btnApply {
+  background-color: var(--roxo-claro);
+  color: white;
+  box-shadow: 0 5px 18px rgba(147, 85, 199, 0.45);
+}
+.btnApply:hover {
+  background-color: #b969e5;
+  box-shadow: 0 6px 20px rgba(147, 85, 199, 0.75);
+}
+
+/* ==========================================
+   LIMPAR (MESMA COR DO FILTRO)
+========================================== */
+.btnClear {
+  background-color: transparent;
+  color:#ffc64e;
+  border: 1px solid #ffc64e;
+  box-shadow: 0 5px 18px rgba(220, 136, 235, 0.35);
+}
+.btnClear:hover {
+  background-color: #e2a3f14d;
+  box-shadow: 0 6px 20px rgba(220, 136, 235, 0.75);
+}
+
+/* ==========================================
+   VOLTAR FLUTUANTE (AMARELO)
+========================================== */
+.voltarBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background-color: var(--botao);
+  color: white;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.voltarBtn:hover {
+  background-color: #ffc64e;
+  box-shadow: 0 8px 20px rgba(255, 200, 50, 0.6);
+  transform: scale(1.12);
+}
+
+/* ==========================================
+   CARD PET – HOVER EXTRA OPCIONAL
+========================================== */
+.pet-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.pet-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }

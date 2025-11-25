@@ -3,40 +3,29 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import styles from "./page-adotar.module.css";
 
-
 const CATS = [
-  { "id": 1, "nome": "Luna", "idadeMonths": 24, "genero": "Fêmea", "descricao": "Dócil e carinhosa, adora um colo e ronronar bastante.", "imagem": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 2, "nome": "Tom", "idadeMonths": 18, "genero": "Macho", "descricao": "Cheio de energia e muito brincalhão, ótimo com crianças.", "imagem": "https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 3, "nome": "Mia", "idadeMonths": 36, "genero": "Fêmea", "descricao": "Calma e observadora, ama cochilar perto da janela.", "imagem": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 4, "nome": "Nino", "idadeMonths": 5, "genero": "Macho", "descricao": "Filhote curioso e esperto, perfeito para quem quer companhia!", "imagem": "https://images.unsplash.com/photo-1560114926-1b0d3d4b4b9b?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 5, "nome": "Mel", "idadeMonths": 48, "genero": "Fêmea", "descricao": "Carinhosa e sociável com outros gatos, já castrada e vacinada.", "imagem": "https://images.unsplash.com/photo-1592194996313-0c5b2d6c2e9f?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 6, "nome": "Bento", "idadeMonths": 12, "genero": "Macho", "descricao": "Aventureiro e muito esperto! Ama explorar e subir em tudo.", "imagem": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 7, "nome": "Pipoca", "idadeMonths": 8, "genero": "Fêmea", "descricao": "Brincalhona e curiosa — adora bolinhas e caixas.", "imagem": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 8, "nome": "Zeus", "idadeMonths": 60, "genero": "Macho", "descricao": "Sério e elegante — vive dormindo no sofá.", "imagem": "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 9, "nome": "Loki", "idadeMonths": 20, "genero": "Macho", "descricao": "Travesso e muito esperto, adora brincar de esconde-esconde.", "imagem": "https://images.unsplash.com/photo-1603311911821-1a1d5c6f5b36?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 10, "nome": "Bella", "idadeMonths": 30, "genero": "Fêmea", "descricao": "Gentil e dócil, adora carinho e estar perto da família.", "imagem": "https://images.unsplash.com/photo-1592194996310-7b43878e84a7?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 11, "nome": "Charlie", "idadeMonths": 14, "genero": "Macho", "descricao": "Curioso e brincalhão, ótimo para quem adora gatos ativos.", "imagem": "https://images.unsplash.com/photo-1617196035791-8f44c0bff1cd?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 12, "nome": "Nina", "idadeMonths": 40, "genero": "Fêmea", "descricao": "Carinhosa e paciente, gosta de cochilar e observar o movimento da casa.", "imagem": "https://images.unsplash.com/photo-1601758123927-33b7dbb4019e?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 13, "nome": "Simba", "idadeMonths": 22, "genero": "Macho", "descricao": "Aventureiro e corajoso, sempre explorando novos cantos.", "imagem": "https://images.unsplash.com/photo-1583337130417-4554a8b39b17?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 14, "nome": "Lily", "idadeMonths": 18, "genero": "Fêmea", "descricao": "Doce e tranquila, ama se aconchegar no colo.", "imagem": "https://images.unsplash.com/photo-1605470372265-df5f0cf7f33b?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 15, "nome": "Oscar", "idadeMonths": 36, "genero": "Macho", "descricao": "Elegante e calmo, gosta de janelas ensolaradas e sons suaves.", "imagem": "https://images.unsplash.com/photo-1592194996313-0c5b2d6c2e9f?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 16, "nome": "Molly", "idadeMonths": 10, "genero": "Fêmea", "descricao": "Filhote carinhosa e brincalhona, cheia de energia.", "imagem": "https://images.unsplash.com/photo-1617196035792-4d24b41ed6dc?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 17, "nome": "Leo", "idadeMonths": 50, "genero": "Macho", "descricao": "Calmo e protetor, gosta de observar tudo com atenção.", "imagem": "https://images.unsplash.com/photo-1592194996311-4b2dcd1dfd3b?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 18, "nome": "Chloe", "idadeMonths": 28, "genero": "Fêmea", "descricao": "Amigável e sociável, se dá bem com outros animais.", "imagem": "https://images.unsplash.com/photo-1617196035793-7fba2c8a0c12?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 19, "nome": "Max", "idadeMonths": 16, "genero": "Macho", "descricao": "Divertido e curioso, gosta de perseguir brinquedos e sombras.", "imagem": "https://images.unsplash.com/photo-1603311911822-1a1d5c6f5b37?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 20, "nome": "Daisy", "idadeMonths": 24, "genero": "Fêmea", "descricao": "Carinhosa e meiga, adora receber atenção e carinho.", "imagem": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 21, "nome": "Tiger", "idadeMonths": 42, "genero": "Macho", "descricao": "Forte e elegante, gosta de descansar em lugares altos.", "imagem": "https://images.unsplash.com/photo-1605470372266-5f5f0cf7f33c?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 22, "nome": "Lola", "idadeMonths": 8, "genero": "Fêmea", "descricao": "Filhote brincalhona, adora correr e se esconder em caixas.", "imagem": "https://images.unsplash.com/photo-1617196035794-9fba2c8a0c13?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 23, "nome": "Rocky", "idadeMonths": 60, "genero": "Macho", "descricao": "Tranquilo e majestoso, gosta de descansar ao sol.", "imagem": "https://images.unsplash.com/photo-1592194996314-5b2dcd1dfd3c?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 24, "nome": "Cleo", "idadeMonths": 26, "genero": "Fêmea", "descricao": "Curiosa e esperta, adora explorar cada canto da casa.", "imagem": "https://images.unsplash.com/photo-1617196035795-3d24b41ed6dd?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 25, "nome": "Finn", "idadeMonths": 12, "genero": "Macho", "descricao": "Brincalhão e afetuoso, perfeito para famílias com crianças.", "imagem": "https://images.unsplash.com/photo-1603311911823-1a1d5c6f5b38?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 26, "nome": "Sophie", "idadeMonths": 34, "genero": "Fêmea", "descricao": "Amigável e calma, adora observar o movimento da casa.", "imagem": "https://images.unsplash.com/photo-1592194996315-4b43878e84a8?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 27, "nome": "Jasper", "idadeMonths": 18, "genero": "Macho", "descricao": "Ativo e curioso, gosta de escalar e explorar.", "imagem": "https://images.unsplash.com/photo-1605470372267-8f5f0cf7f33d?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 28, "nome": "Ruby", "idadeMonths": 22, "genero": "Fêmea", "descricao": "Dócil e carinhosa, ama brincar e receber atenção.", "imagem": "https://images.unsplash.com/photo-1617196035796-2fba2c8a0c14?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 29, "nome": "Sam", "idadeMonths": 44, "genero": "Macho", "descricao": "Calmo e observador, gosta de janelas ensolaradas.", "imagem": "https://images.unsplash.com/photo-1592194996316-3b2dcd1dfd3d?ixlib=rb-4.0.3&auto=format&fit=crop" },
-  { "id": 30, "nome": "Luna", "idadeMonths": 14, "genero": "Fêmea", "descricao": "Brincalhona e curiosa, adora perseguir brinquedos.", "imagem": "https://images.unsplash.com/photo-1617196035797-1d24b41ed6de?ixlib=rb-4.0.3&auto=format&fit=crop" }
-]
-;
+  { id: 1, nome: "Luna", idadeMonths: 24, genero: "Fêmea", descricao: "Dócil e carinhosa, adora um colo e ronronar bastante.", imagem: "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 2, nome: "Tom", idadeMonths: 18, genero: "Macho", descricao: "Cheio de energia e muito brincalhão, ótimo com crianças.", imagem: "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 3, nome: "Mia", idadeMonths: 36, genero: "Fêmea", descricao: "Calma e observadora, ama cochilar perto da janela.", imagem: "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 4, nome: "Nino", idadeMonths: 5, genero: "Macho", descricao: "Filhote curioso e esperto, perfeito para quem quer companhia!", imagem: "https://images.pexels.com/photos/384555/pexels-photo-384555.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 5, nome: "Mel", idadeMonths: 48, genero: "Fêmea", descricao: "Carinhosa e sociável com outros gatos, já castrada e vacinada.", imagem: "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 6, nome: "Bento", idadeMonths: 12, genero: "Macho", descricao: "Aventureiro e muito esperto! Ama explorar e subir em tudo.", imagem: "https://images.pexels.com/photos/730896/pexels-photo-730896.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 7, nome: "Pipoca", idadeMonths: 8, genero: "Fêmea", descricao: "Brincalhona e curiosa — adora bolinhas e caixas.", imagem: "https://images.pexels.com/photos/2071873/pexels-photo-2071873.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 8, nome: "Zeus", idadeMonths: 60, genero: "Macho", descricao: "Sério e elegante — vive dormindo no sofá.", imagem: "https://images.pexels.com/photos/1543793/pexels-photo-1543793.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 9, nome: "Loki", idadeMonths: 20, genero: "Macho", descricao: "Travesso e muito esperto, adora brincar de esconde-esconde.", imagem: "https://images.pexels.com/photos/2173872/pexels-photo-2173872.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 10, nome: "Bella", idadeMonths: 30, genero: "Fêmea", descricao: "Gentil e dócil, adora carinho e estar perto da família.", imagem: "https://images.pexels.com/photos/1828875/pexels-photo-1828875.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 11, nome: "Charlie", idadeMonths: 14, genero: "Macho", descricao: "Curioso e brincalhão, ótimo para quem adora gatos ativos.", imagem: "https://images.pexels.com/photos/3687957/pexels-photo-3687957.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 12, nome: "Nina", idadeMonths: 40, genero: "Fêmea", descricao: "Carinhosa e paciente, gosta de cochilar e observar o movimento da casa.", imagem: "https://images.pexels.com/photos/320014/pexels-photo-320014.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 13, nome: "Simba", idadeMonths: 22, genero: "Macho", descricao: "Aventureiro e corajoso, sempre explorando novos cantos.", imagem: "https://images.pexels.com/photos/1314550/pexels-photo-1314550.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 14, nome: "Lily", idadeMonths: 18, genero: "Fêmea", descricao: "Doce e tranquila, ama se aconchegar no colo.", imagem: "https://images.pexels.com/photos/20787/pexels-photo.jpg?q=80&w=800&auto=format&fit=crop" },
+  { id: 15, nome: "Oscar", idadeMonths: 36, genero: "Macho", descricao: "Elegante e calmo, gosta de janelas ensolaradas e sons suaves.", imagem: "https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 16, nome: "Molly", idadeMonths: 10, genero: "Fêmea", descricao: "Filhote carinhosa e brincalhona, cheia de energia.", imagem: "https://images.pexels.com/photos/1741205/pexels-photo-1741205.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 17, nome: "Leo", idadeMonths: 50, genero: "Macho", descricao: "Calmo e protetor, gosta de observar tudo com atenção.", imagem: "https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 18, nome: "Chloe", idadeMonths: 28, genero: "Fêmea", descricao: "Amigável e sociável, se dá bem com outros animais.", imagem: "https://images.pexels.com/photos/2558605/pexels-photo-2558605.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 19, nome: "Max", idadeMonths: 16, genero: "Macho", descricao: "Divertido e curioso, gosta de perseguir brinquedos e sombras.", imagem: "https://images.pexels.com/photos/208984/pexels-photo-208984.jpeg?q=80&w=800&auto=format&fit=crop" },
+  { id: 20, nome: "Daisy", idadeMonths: 24, genero: "Fêmea", descricao: "Carinhosa e meiga, adora receber atenção e carinho.", imagem: "https://images.pexels.com/photos/923360/pexels-photo-923360.jpeg?q=80&w=800&auto=format&fit=crop" }
+];
+
 
 
 function formatAge(months) {
@@ -215,8 +204,9 @@ export default function Adotar() {
       <header className={styles.topo}>
         <div className={styles.topoInner}>
           <div>
-            <h1>ADOTE UM GATINHO</h1>
-            <p>Encontre seu novo melhor amigo — adoção responsável e amorosa.</p>
+            <h1>Quero Adotar</h1>
+            <p >Dê uma nova chance a um gatinho!</p>
+
           </div>
 
           <div className={styles.actionsRow}>
@@ -246,10 +236,19 @@ export default function Adotar() {
               </div>
             </div>
 
+      
+
+            {/* === FILTRO: IDADE === */}
             <div className={styles.filtroCol}>
-              <label className={styles.label}>Idade</label>
+              <label className={styles.label} htmlFor="filtroIdade">Idade</label>
+
               <div className={styles.selectWrap}>
-                <select className={styles.selectFiltro} value={ageFilter} onChange={(e) => setAgeFilter(e.target.value)}>
+                <select
+                  id="filtroIdade"
+                  className={styles.selectFiltro}
+                  value={ageFilter}
+                  onChange={(e) => setAgeFilter(e.target.value)}
+                >
                   <option value="">Todas</option>
                   <option value="filhote">Filhote (&lt;1 ano)</option>
                   <option value="1-2">1 — 2 anos</option>
@@ -258,10 +257,17 @@ export default function Adotar() {
               </div>
             </div>
 
+            {/* === FILTRO: ORDENAR === */}
             <div className={styles.filtroCol}>
-              <label className={styles.label}>Ordenar</label>
+              <label className={styles.label} htmlFor="filtroOrdenar">Ordenar</label>
+
               <div className={styles.selectWrap}>
-                <select className={styles.selectFiltro} value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                <select
+                  id="filtroOrdenar"
+                  className={styles.selectFiltro}
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
                   <option value="relevance">Mais relevantes</option>
                   <option value="nome-asc">Nome A → Z</option>
                   <option value="idade-asc">Idade: jovem → velho</option>
@@ -269,6 +275,7 @@ export default function Adotar() {
                 </select>
               </div>
             </div>
+
 
             <div className={styles.actionsFiltros}>
               <button className={styles.btnClear} onClick={() => { setGenderFilter(""); setAgeFilter(""); setQuery(""); setSortBy("relevance"); }}>Limpar</button>
@@ -302,11 +309,7 @@ export default function Adotar() {
         <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#fff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg>
       </button>
 
-      <footer className={styles.rodape}>
-        <div className={styles.rodapeInner}>
-          <div>© {new Date().getFullYear()}  ResGatinhos — Amor que transforma vidas</div>
-        </div>
-      </footer>
+     
     </div>
   );
 }

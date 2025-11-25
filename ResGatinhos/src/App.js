@@ -11,6 +11,7 @@ const CriarConta = lazy(() => import("./Cadastrar/page-cadastrar"));
 const Login = lazy(() => import("./Entrar/page-entrar"));
 const Conta = lazy(() => import("./Conta/page-conta"));
 const ConfiguracoesConta = lazy(() => import("./Configuracao/page-config"));
+const PageMatch = lazy(() => import('../src/Mech/page-match')); // <-- NOVA IMPORTAÇÃO
 
 function App() {
   const [user, setUser] = useState({
@@ -46,6 +47,7 @@ function App() {
           <Route path="/adotar" element={<Adotar />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/criar-conta" element={<CriarConta setUser={setUser} />} />
+          <Route path="/match" element={<PageMatch />} /> {/* <-- NOVA ROTA */}
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route
             path="/conta"

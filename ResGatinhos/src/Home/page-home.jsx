@@ -761,7 +761,8 @@ useEffect(() => {
         <li><a href="/quero-adotar">Quero Adotar</a></li>
         <li><a href="/doacoes">Doe Agora</a></li>
         <li><a href="/voluntarios">Seja Voluntário</a></li>
-        <li><a href="/eventos">Eventos</a></li>
+        <li><a href="/match">Match</a></li>
+        
       </ul>
     </div>
 

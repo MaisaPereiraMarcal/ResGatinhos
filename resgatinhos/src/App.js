@@ -11,7 +11,17 @@ const CriarConta = lazy(() => import("./Cadastrar/page-cadastrar"));
 const Login = lazy(() => import("./Entrar/page-entrar"));
 const Conta = lazy(() => import("./Conta/page-conta"));
 const ConfiguracoesConta = lazy(() => import("./Configuracao/page-config"));
-const PageMatch = lazy(() => import('../src/Mech/page-match')); // <-- NOVA IMPORTAÇÃO
+const PageMatch = lazy(() => import("./Mech/page-match"));
+
+/* === ADMIN IMPORTS === */
+const AdminDashboard = lazy(() => import("./Admin/AdminDashboard"));
+const EventsPage = lazy(() => import("./Events/Events"));
+const EventDetails = lazy(() => import("./Events/EventDetails"));
+
+/* === BLOG IMPORTS === */
+const Blog = lazy(() => import("./Blog/Blog"));
+const BlogPost = lazy(() => import("./Blog/BlogPost"));
+const Editor = lazy(() => import("./Blog/Editor"));
 
 function App() {
   const [user, setUser] = useState({
@@ -21,34 +31,29 @@ function App() {
   });
 
   const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
+    if (darkMode) document.body.classList.add("dark");
+    else document.body.classList.remove("dark");
   }, [darkMode]);
 
-  const handleLogout = () => {
-    setUser(null);
-  };
+  const handleLogout = () => setUser(null);
 
   return (
     <Router>
       <Suspense fallback={<Loading />}>
         <Routes>
+
+          {/* PRINCIPAIS */}
           <Route path="/" element={<Home user={user} setUser={setUser} />} />
           <Route path="/quero-adotar" element={<QueroAdotar />} />
           <Route path="/adotar" element={<Adotar />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/criar-conta" element={<CriarConta setUser={setUser} />} />
-          <Route path="/match" element={<PageMatch />} /> {/* <-- NOVA ROTA */}
+          <Route path="/match" element={<PageMatch />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+
           <Route
             path="/conta"
             element={
@@ -60,6 +65,7 @@ function App() {
               />
             }
           />
+
           <Route
             path="/configuracoes"
             element={
@@ -71,7 +77,20 @@ function App() {
               />
             }
           />
+
+          {/* === ADMIN === */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/eventos" element={<EventsPage />} />
+          <Route path="/admin/eventos/:id" element={<EventDetails />} />
+
+          {/* === BLOG === */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/post/:id" element={<BlogPost />} />
+          <Route path="/blog/editor" element={<Editor />} />
+
+          {/* ERROR */}
           <Route path="/*" element={<PageError />} />
+
         </Routes>
       </Suspense>
     </Router>

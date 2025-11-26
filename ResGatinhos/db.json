@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": "b552",
+      "title": "",
+      "content": "",
+      "categories": [
+        ""
+      ],
+      "author": "Admin",
+      "date": "25/11/2025",
+      "comments": []
+    },
+    {
+      "id": "94c4",
+      "title": "ddd",
+      "content": "dd",
+      "categories": [
+        "dd"
+      ],
+      "author": "Admin",
+      "date": "25/11/2025",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "events": []
+}

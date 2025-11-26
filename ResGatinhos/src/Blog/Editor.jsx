@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import styles from "./Editor.module.css";
-import blogApi from "../Blog/blogApi";
+import blogApi from "./blogApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Editor() {
   const [title, setTitle] = useState("");
   const [categories, setCategories] = useState("");
   const [content, setContent] = useState("");
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
 
     try {
       await blogApi.createPost({
@@ -18,21 +18,14 @@ export default function Editor() {
         content,
         categories: categories.split(",").map(c => c.trim()),
         author: "Admin",
-        date: new Date().toLocaleDateString("pt-BR"),
+        date: new Date().toLocaleDateString(),
         comments: []
       });
 
-      alert("🔥 Post publicado com sucesso!");
-      setTitle("");
-      setCategories("");
-      setContent("");
-
-    } catch (error) {
-      console.error("Erro ao publicar:", error);
-      alert("Erro ao publicar o post 💀");
+      navigate("/blog");
+    } catch (err) {
+      alert("Erro ao publicar.");
     }
-
-    setLoading(false);
   }
 
   return (
@@ -58,12 +51,8 @@ export default function Editor() {
         onChange={e => setContent(e.target.value)}
       />
 
-      <button
-        className={styles.publishBtn}
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? "Publicando..." : "Publicar"}
+      <button className={styles.publishBtn} onClick={handleSubmit}>
+        Publicar
       </button>
     </div>
   );

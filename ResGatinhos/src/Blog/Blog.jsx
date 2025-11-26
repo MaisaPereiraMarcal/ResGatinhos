@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import BlogCard from "../Blog/BlogCard";
 import styles from "./Blog.module.css";
-import blogApi from "../Blog/blogApi";
+import blogApi from "./blogApi";
+import { useNavigate } from "react-router-dom";
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     blogApi.getPosts().then(setPosts);
@@ -12,11 +13,24 @@ export default function Blog() {
 
   return (
     <div className={styles.blogContainer}>
-      <h1 className={styles.title}>Blog & Notícias</h1>
+      <h1>Blog</h1>
 
       <div className={styles.postsGrid}>
         {posts.map(post => (
-          <BlogCard key={post.id} post={post} />
+          <div
+            key={post.id}
+            className={styles.postCard}
+            onClick={() => navigate(`/blog/${post.id}`)}
+          >
+            <h2>{post.title}</h2>
+            <p>{post.content.substring(0, 150)}...</p>
+
+            <div className={styles.tags}>
+              {post.categories.map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>

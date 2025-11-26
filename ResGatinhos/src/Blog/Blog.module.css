@@ -1,84 +1,100 @@
-/* --- Variáveis (Recomendado para consistência) --- */
+/* --- Variáveis (Para consistência) --- */
 :root {
-  --page-bg: #1e2127; /* Fundo da página */
-  --panel-bg: #282c34; /* Fundo do contêiner */
   --text-color: #f1f1f1;
+  --panel-bg: #282c34; /* Fundo do card */
+  --page-bg: #1e2127; /* Fundo do container/página */
   --accent1: #ffb91d; /* Amarelo/Laranja de destaque */
-  --shadow-base: rgba(0, 0, 0, 0.5);
+  --shadow-base: rgba(0, 0, 0, 0.6);
+  --shadow-hover: rgba(255, 185, 29, 0.3); /* Brilho de hover */
+  --tag-bg: #4a515c; /* Fundo mais escuro para tags */
 }
 
 /* 1. Contêiner Principal */
 .blogContainer {
-  /* Fundo sutilmente diferente da página */
-  background: var(--panel-bg); 
-  
-  /* Um pouco mais de padding */
-  padding: 40px; 
-  
-  /* Borda arredondada suave */
-  border-radius: 12px; 
-  
-  color: var(--text-color);
-  
-  /* Sombra sutil para destacar o bloco na página */
-  box-shadow: 0 10px 30px var(--shadow-base);
+  max-width: 1000px; /* Ligeiramente mais largo */
+  margin: 60px auto;
+  padding: 0 20px; /* Adiciona padding lateral para telas pequenas */
 }
 
-/* 2. Título da Seção */
-.title {
-  /* Fonte maior e mais impactante */
-  font-size: 2.5rem; 
-  font-weight: 700;
-  
-  /* Cor de destaque */
-  color: var(--accent1); 
-  
-  margin-bottom: 30px;
-  
-  /* Adiciona uma linha de destaque sob o título */
-  display: inline-block;
-  position: relative;
-}
-
-/* Efeito de Sublinhado Moderno para o Título */
-.title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px; /* Posição da linha */
-  width: 50%; /* A linha cobre metade do título */
-  height: 4px;
-  background: var(--accent1);
-  border-radius: 2px;
-}
-
-/* 3. Layout da Grade dos Posts */
+/* 2. Grid de Posts */
 .postsGrid {
-  /* Espaçamento interno (gap) ligeiramente maior */
-  gap: 30px; 
-  
   display: grid;
-  
-  /* Layout responsivo: no mínimo 280px por coluna, e 1fr para preencher */
+  /* Garante um mínimo de 280px por coluna, e 1fr para preencher */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  
-  /* Adiciona um pouco de padding interno à grade para respirar */
-  padding-top: 10px; 
+  gap: 30px; /* Mais espaçamento */
 }
 
-/* 4. Estilo Sugerido para o Card Individual (Post) */
-/* Este estilo precisa ser aplicado ao elemento que encapsula cada post dentro do postsGrid */
+/* 3. Card Individual de Post */
 .postCard {
-    background: var(--panel-bg);
-    border-radius: 8px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+  background: var(--panel-bg);
+  color: var(--text-color);
+  padding: 25px; /* Mais padding */
+  border-radius: 16px; /* Mais arredondado */
+  cursor: pointer;
+  
+  /* Transição em tudo para suavidade e interação */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  
+  /* Sombra inicial mais profunda */
+  box-shadow: 0 6px 20px var(--shadow-base);
+  
+  /* Borda sutil para Dark Mode */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
 }
 
 .postCard:hover {
-    /* Efeito de leve elevação ao passar o mouse */
-    transform: translateY(-5px); 
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent1); /* Sombra e leve brilho */
+  /* Remove a transformação scale para um efeito mais limpo */
+  transform: translateY(-8px); 
+  
+  /* Adiciona um brilho sutil com a cor de destaque */
+  box-shadow: 0 12px 30px var(--shadow-base), 0 0 12px var(--shadow-hover);
+}
+
+/* 4. Tags Wrapper */
+.tags {
+  margin-top: 15px; /* Mais espaço */
+  display: flex;
+  flex-wrap: wrap; /* Garante que as tags quebrem a linha se houver muitas */
+  gap: 8px;
+}
+
+/* 5. Tag Individual (span) */
+.tags span {
+  /* Cores de Dark Mode */
+  background: var(--tag-bg); 
+  color: var(--accent1); /* Cor de destaque para o texto */
+  
+  padding: 5px 12px;
+  border-radius: 20px; /* Formato de pílula */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 185, 29, 0.3); /* Borda fina da cor do destaque */
+}
+
+/* Ajustes de Tipografia (sugestão para manter a consistência) */
+/* Se houver um .title e .preview dentro do card, use o seguinte: */
+
+.postCard .title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.postCard .preview {
+  font-size: 1rem;
+  color: var(--muted-color);
+  line-height: 1.5;
+}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* Padrão */
+}
+/* Deixa os títulos mais ousados */
+.title, h1, h2 {
+  color:#ffb91d ;
+  font-weight: 700; 
+  letter-spacing: -0.5px; /* Adiciona um leve "aperto" para um visual mais moderno */
 }
